@@ -1,0 +1,5 @@
+Paper - #FAFAF7
+Ink - #0E1116
+Primary - #3374BB
+Primary Deep - #1F4F87
+Accent - #97C93B
