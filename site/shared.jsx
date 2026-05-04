@@ -54,8 +54,12 @@ function CountUp({ to, duration = 1400, suffix = '', prefix = '' }) {
   return <span ref={ref}>{prefix}{display}{suffix}</span>;
 }
 
-// Logo SVG inline — fiel ao símbolo (a minúsculo + balão + 3 pontos verdes)
-function AssessorLogo({ size = 28, primary = '#3374BB', accent = '#97C93B' }) {
+// Logo PNG oficial
+function AssessorLogo({ size = 28 }) {
+  return <img src="site/img/logo.png" alt="AssessorTech" width={size} height={size} style={{ display: 'block' }} />;
+}
+
+function AssessorLogoLegacy({ size = 28, primary = '#3374BB', accent = '#97C93B' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none" aria-label="AssessorTech">
       {/* corpo do "a" */}

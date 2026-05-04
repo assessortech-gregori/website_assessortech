@@ -141,7 +141,7 @@ function V1Diferenciais() {
 function V1DiffCard({ n, title, body, tag, delay }) {
   const [hover, setHover] = React.useState(false);
   return (
-    <Reveal delay={delay}>
+    <Reveal delay={delay} style={{ height: '100%' }}>
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -152,7 +152,8 @@ function V1DiffCard({ n, title, body, tag, delay }) {
           background: hover ? v1.paper : v1.card,
           transition: 'background .2s',
           position: 'relative',
-          minHeight: 320,
+          minHeight: 380,
+          height: '100%',
           display: 'flex', flexDirection: 'column', justifyContent: 'space-between'
         }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>

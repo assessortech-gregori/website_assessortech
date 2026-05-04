@@ -125,6 +125,7 @@ function V1Step({ n, title, body, icon, last, delay }) {
           <div style={{
             fontFamily: v1.serifNumber, fontStyle: 'italic', fontWeight: 500,
             fontSize: 64, lineHeight: 1, color: v1.primary, letterSpacing: '-0.02em',
+            width: 80, textAlign: 'left', flexShrink: 0,
           }}>{n}</div>
           <div style={{
             width: 44, height: 44, borderRadius: 10,
@@ -151,11 +152,46 @@ function V1Step({ n, title, body, icon, last, delay }) {
 }
 
 // ─── BENEFÍCIOS ────────────────────────────────────────────────
+function BenIcon({ name, color = '#97C93B' }) {
+  const s = { width: 22, height: 22, fill: 'none', stroke: color, strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' };
+  switch (name) {
+    case 'sun': // decisão clara — sol/raio
+      return (
+        <svg {...s} viewBox="0 0 24 24">
+          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+        </svg>);
+    case 'clock': // tempo de volta — relógio
+      return (
+        <svg {...s} viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 2" />
+        </svg>);
+    case 'pulse': // visão do todo — gráfico/pulso
+      return (
+        <svg {...s} viewBox="0 0 24 24">
+          <path d="M3 12h4l3-8 4 16 3-8h4" />
+        </svg>);
+    default: return null;
+  }
+}
+
 function V1Beneficios() {
   const items = [
-    { kpi: '60%', label: 'menos tempo gasto em planilhas', title: 'Decisões mais rápidas.', body: 'Acesso imediato à informação crítica. Tomada de decisão ágil, baseada em dado — não em achismo.' },
-    { kpi: '24/7', label: 'em qualquer dispositivo', title: 'Controle total.', body: 'Monitore o seu negócio de qualquer lugar. Dashboards acessíveis em desktop, tablet e celular.' },
-    { kpi: '0', label: 'relatórios refeitos do zero', title: 'Sem retrabalho.', body: 'Automação de ingestão, tratamento e relatórios. A equipe fica livre pra tarefas que importam de verdade.' },
+    {
+      icon: 'sun',
+      title: 'Decisão sem achismo.',
+      body: <>Quando o número certo está na tela, a reunião muda. Para de discutir <em>qual</em> dado é o real e começa a discutir <em>o que fazer</em> com ele.</>,
+    },
+    {
+      icon: 'clock',
+      title: 'Tempo de volta.',
+      body: 'O time deixa de fechar planilha à mão toda segunda. O relatório se monta sozinho, e as horas livres viram análise — não trabalho mecânico.',
+    },
+    {
+      icon: 'pulse',
+      title: 'Visão do todo.',
+      body: 'Vendas, estoque, financeiro, produção — conversando entre si. Para de comparar planilhas que não fecham e passa a enxergar o negócio inteiro.',
+    },
   ];
   return (
     <section style={{ padding: '120px 56px', background: v1.ink, color: v1.paper, fontFamily: v1.sans }}>
@@ -172,10 +208,22 @@ function V1Beneficios() {
         <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
           {items.map((it, i) => (
             <Reveal key={it.title} delay={i * 100}>
-              <div style={{ padding: '40px 32px 36px', border: '1px solid rgba(250,250,247,.12)', borderRadius: 8, background: 'rgba(250,250,247,.03)', height: '100%' }}>
-                <div style={{ fontSize: 64, lineHeight: 1, letterSpacing: '-0.04em', fontWeight: 500, color: v1.accent, fontFamily: v1.sans }}>{it.kpi}</div>
-                <div style={{ fontSize: 13, color: 'rgba(250,250,247,.5)', marginTop: 8, fontFamily: v1.mono }}>{it.label}</div>
-                <h3 style={{ margin: '32px 0 12px', fontSize: 26, letterSpacing: '-0.02em', fontWeight: 500 }}>{it.title}</h3>
+              <div style={{
+                padding: '40px 32px 36px',
+                border: '1px solid rgba(250,250,247,.12)',
+                borderRadius: 8,
+                background: 'rgba(250,250,247,.03)',
+                height: '100%',
+              }}>
+                <div style={{
+                  width: 44, height: 44, borderRadius: 8,
+                  background: 'rgba(151, 201, 59, 0.15)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  marginBottom: 28,
+                }}>
+                  <BenIcon name={it.icon} color={v1.accent} />
+                </div>
+                <h3 style={{ margin: '0 0 14px', fontSize: 26, letterSpacing: '-0.02em', fontWeight: 500 }}>{it.title}</h3>
                 <p style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: 'rgba(250,250,247,.7)' }}>{it.body}</p>
               </div>
             </Reveal>
@@ -210,7 +258,7 @@ function V1Segmentos() {
               </h2>
             </div>
             <p style={{ fontSize: 16, color: v1.inkSoft, maxWidth: 380, margin: 0, lineHeight: 1.5 }}>
-              Indústrias e operações onde já estruturamos BI. A lista não é fim — é começo.
+              Indústrias e operações onde já estruturamos BI.
             </p>
           </div>
         </Reveal>
@@ -274,24 +322,26 @@ function V1SegCard({ name, icon, delay }) {
 function SegIcon({ name, color, size = 28 }) {
   const s = { width: size, height: size, fill: 'none', stroke: color, strokeWidth: 1.6, strokeLinecap: 'round', strokeLinejoin: 'round' };
   switch (name) {
-    case 'food': // garfo + faca cruzados, limpos
+    case 'food': // garfo tipo tridente (3 pontas, base em meia-lua) + faca monoline
       return (
         <svg {...s} viewBox="0 0 32 32">
-          {/* Garfo à esquerda */}
-          <path d="M11 4v8c0 1.2-.9 2-2 2s-2-.8-2-2V4" />
-          <path d="M9 14v14" />
-          {/* Faca à direita */}
-          <path d="M22 4c-2.5 0-4 4-4 8 0 2.4 1.5 4 4 4" />
-          <path d="M22 16v12" />
+          {/* Garfo — 3 pontas conectadas por meia-lua na base, cabo descendo */}
+          <path d="M8 4v6" />
+          <path d="M11.5 4v6" />
+          <path d="M15 4v6" />
+          <path d="M8 10a3.5 3.5 0 0 0 7 0" />
+          <path d="M11.5 10v18" />
+          {/* Faca — monoline curva (lâmina + cabo numa linha só) */}
+          <path d="M23 4c-2 3-3 6-3 9 0 1.5.7 2.5 2 2.5h.5v12.5" />
         </svg>);
 
     case 'beverage': // copo (mantido, mesmo não usado)
       return <svg {...s} viewBox="0 0 32 32"><path d="M9 6h14l-2 20H11L9 6z" /><path d="M10 12h12" /></svg>;
-    case 'metal': // engrenagem decente — dentes retangulares ao redor de uma roda
+    case 'metal': // engrenagem clássica — 8 dentes + furo central alinhado
       return (
         <svg {...s} viewBox="0 0 32 32">
-          <path d="M14 3h4v3.6l2.4 1 2.5-2.5 2.8 2.8-2.5 2.5 1 2.4H28v4h-3.6l-1 2.4 2.5 2.5-2.8 2.8-2.5-2.5-2.4 1V29h-4v-3.6l-2.4-1-2.5 2.5-2.8-2.8 2.5-2.5-1-2.4H4v-4h3.6l1-2.4-2.5-2.5 2.8-2.8 2.5 2.5 2.4-1V3z" />
-          <circle cx="16" cy="16" r="4" />
+          <path d="M14 2h4v3l3 1.2 2.1-2.1 2.8 2.8L23.8 9l1.2 3h3v4h-3l-1.2 3 2.1 2.1-2.8 2.8-2.1-2.1L18 23v3h-4v-3l-3-1.2-2.1 2.1-2.8-2.8L8.2 19 7 16H4v-4h3l1.2-3-2.1-2.1 2.8-2.8L11 7.2l3-1.2z" />
+          <circle cx="16" cy="14" r="3.5" />
         </svg>);
 
     case 'furniture': // C · cama/sofá

@@ -26,7 +26,7 @@ function V1Nav() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  const links = ['Sobre', 'Diferenciais', 'Metodologia', 'Segmentos', 'Contato'];
+  const links = ['Diferenciais', 'Metodologia', 'Segmentos', 'Contato'];
   return (
     <nav style={{
       position: 'sticky', top: 0, zIndex: 50,
@@ -62,7 +62,7 @@ function V1Nav() {
         }}
         onMouseEnter={(e) => {e.currentTarget.style.background = v1.primary;e.currentTarget.style.transform = 'translateY(-1px)';}}
         onMouseLeave={(e) => {e.currentTarget.style.background = v1.ink;e.currentTarget.style.transform = 'translateY(0)';}}>
-          Falar com a gente →</a>
+          Fale conosco →</a>
       </div>
     </nav>);
 
@@ -74,53 +74,69 @@ function V1Hero() {
     <section id="top" style={{
       padding: '88px 56px 120px',
       position: 'relative',
+      overflow: 'hidden',
       fontFamily: v1.sans
     }}>
-      <Reveal delay={80}>
-        <p style={{
-          margin: '0 0 0', maxWidth: 900,
-          fontFamily: v1.serif, fontStyle: 'italic', fontWeight: 500,
-          fontSize: 'clamp(24px, 2.6vw, 36px)', lineHeight: 1.25,
-          color: v1.inkSoft, letterSpacing: '-0.01em'
-        }}>
-          “O que não pode ser medido<br />não pode ser gerenciado.”
-        </p>
-      </Reveal>
+      {/* Grid de fundo discreto */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: `linear-gradient(to right, rgba(14,17,22,.04) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(14,17,22,.04) 1px, transparent 1px)`,
+        backgroundSize: '80px 80px',
+        backgroundPosition: 'center top',
+        WebkitMaskImage: 'linear-gradient(180deg, black, black 60%, transparent 100%)',
+        maskImage: 'linear-gradient(180deg, black, black 60%, transparent 100%)'
+      }} />
 
-      <Reveal delay={180}>
+      <style>{`
+        @keyframes v1HeroLineUp { to { transform: translateY(0); } }
+        @keyframes v1HeroFadeUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .v1-line-mask { display: block; overflow: hidden; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+        .v1-line-mask > span {
+          display: inline-block;
+          transform: translateY(110%);
+          animation: v1HeroLineUp 1.1s cubic-bezier(.2,.8,.2,1) forwards;
+        }
+        .v1-line-mask:nth-child(1) > span { animation-delay: .15s; }
+        .v1-line-mask:nth-child(2) > span { animation-delay: .3s; }
+        .v1-line-mask:nth-child(3) > span { animation-delay: .45s; }
+        .v1-hero-fade { opacity: 0; animation: v1HeroFadeUp 1s .9s forwards; }
+      `}</style>
+
+      <div style={{ maxWidth: 1240, margin: '0 auto', position: 'relative' }}>
         <h1 style={{
-          margin: '36px 0 0',
+          margin: 0,
           fontSize: 'clamp(56px, 9vw, 132px)',
           lineHeight: 0.92,
           letterSpacing: '-0.04em',
           fontWeight: 500,
-          color: v1.ink,
-          maxWidth: 1240
+          color: v1.ink
         }}>
-          Inteligência de dados<br />
-          com{' '}
-          <span style={{ fontFamily: v1.serif, fontStyle: 'italic', color: v1.primary, fontWeight: "500" }}>
-            experiência
-          </span>{' '}
-          de negócio.
+          <span className="v1-line-mask"><span>Inteligência de dados</span></span>
+          <span className="v1-line-mask"><span>com{' '}
+            <span style={{ fontFamily: v1.serif, fontStyle: 'italic', color: v1.primary, fontWeight: 500 }}>
+              experiência
+            </span>
+          </span></span>
+          <span className="v1-line-mask"><span>de negócio.</span></span>
         </h1>
-      </Reveal>
 
-      <Reveal delay={260}>
-        <div style={{
+        <div className="v1-hero-fade" style={{
           marginTop: 56,
           display: 'grid',
           gridTemplateColumns: '1.4fr 1fr',
           gap: 80,
-          alignItems: 'end',
-          maxWidth: 1240
+          alignItems: 'end'
         }}>
           <p style={{
             fontSize: 22, lineHeight: 1.4, color: v1.inkSoft,
             maxWidth: 620, margin: 0, letterSpacing: '-0.005em'
           }}>
             Traduzimos a regra do seu negócio em dashboards e indicadores que apoiam decisão.
-            Independente do sistema, garimpamos o dado onde ele estiver e devolvemos clareza —
+            Independente do sistema, buscamos os dados e devolvemos clareza —
             sem projetos longos, em pequenas entregas constantes.
           </p>
           <div style={{ display: 'flex', gap: 12 }}>
@@ -148,14 +164,14 @@ function V1Hero() {
               Como trabalhamos</a>
           </div>
         </div>
-      </Reveal>
 
-      {/* dashboard mockup flutuante */}
-      <Reveal delay={400}>
-        <div style={{ marginTop: 96, position: 'relative' }}>
-          <V1HeroMockup />
-        </div>
-      </Reveal>
+        {/* dashboard mockup flutuante */}
+        <Reveal delay={400}>
+          <div style={{ marginTop: 96, position: 'relative' }}>
+            <V1HeroMockup />
+          </div>
+        </Reveal>
+      </div>
     </section>);
 
 }

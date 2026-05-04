@@ -108,7 +108,7 @@ function V1Contato() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
               <ContactCard label="E-mail" value="contato@assessortech.com.br" href="mailto:contato@assessortech.com.br" icon="mail" />
               <ContactCard label="Telefone" value="54 3196 8474" href="tel:+555431968474" icon="phone" />
-              <ContactCard label="WhatsApp" value="Conversar agora" href="https://api.whatsapp.com/send?1=pt_BR&phone=555431968474" icon="whatsapp" whatsapp />
+              <ContactCard label="WhatsApp" value="Conversar agora" href="https://api.whatsapp.com/send?1=pt_BR&phone=555431968474" icon="whatsapp" />
               <ContactCard label="Endereço" value={<>Rua Rio Branco, 1620, Sala 22<br />Bairro Aparecida<br />Flores da Cunha · RS · 95.270-000</>} icon="map" />
             </div>
           </Reveal>
@@ -142,16 +142,9 @@ function ContactIcon({ name, color, size = 20 }) {
   }
 }
 
-function ContactCard({ label, value, href, icon, whatsapp }) {
+function ContactCard({ label, value, href, icon }) {
   const [hover, setHover] = React.useState(false);
   const Tag = href ? 'a' : 'div';
-  // WhatsApp tem tratamento próprio: fundo verde do tema (accent), tinta escura
-  const bg = whatsapp
-    ? (hover ? '#7eaf2d' : v1.accent)
-    : (hover ? v1.card : v1.paper);
-  const fg = whatsapp ? v1.ink : v1.ink;
-  const labelColor = whatsapp ? 'rgba(14,17,22,.55)' : v1.inkMuted;
-  const border = whatsapp ? 'transparent' : v1.rule;
   return (
     <Tag
       href={href}
@@ -161,40 +154,39 @@ function ContactCard({ label, value, href, icon, whatsapp }) {
       rel={href && href.startsWith('http') ? 'noopener noreferrer' : undefined}
       style={{
         padding: '24px 24px 28px',
-        border: `1px solid ${border}`,
+        border: `1px solid ${hover ? v1.accent : v1.rule}`,
         borderRadius: 8,
-        background: bg,
-        color: fg,
+        background: hover ? v1.card : v1.paper,
+        color: v1.ink,
         textDecoration: 'none',
         display: 'block',
         transition: 'all .2s',
         cursor: href ? 'pointer' : 'default',
         transform: hover && href ? 'translateY(-2px)' : 'translateY(0)',
-        boxShadow: whatsapp ? `0 6px 20px -8px ${v1.accent}80` : 'none',
+        boxShadow: hover ? `0 8px 22px -10px ${v1.accent}55` : 'none',
         position: 'relative',
       }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{
           fontSize: 12, fontFamily: v1.mono, letterSpacing: '0.06em', textTransform: 'uppercase',
-          color: labelColor,
+          color: v1.inkMuted,
         }}>{label}</div>
         {icon && (
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             width: 28, height: 28, borderRadius: 999,
-            background: whatsapp ? 'rgba(14,17,22,.08)' : 'transparent',
+            background: 'transparent',
+            transition: 'color .2s',
           }}>
-            <ContactIcon name={icon} color={whatsapp ? v1.ink : v1.inkMuted} size={whatsapp ? 16 : 18} />
+            <ContactIcon name={icon} color={hover ? v1.accent : v1.inkMuted} size={18} />
           </div>
         )}
       </div>
       <div style={{
         marginTop: 14, fontSize: 18, lineHeight: 1.35, letterSpacing: '-0.01em',
         color: 'inherit', fontWeight: 500,
-        display: 'flex', alignItems: 'center', gap: 8,
       }}>
         {value}
-        {whatsapp && <span style={{ fontSize: 14, opacity: hover ? 1 : 0.6, transition: 'opacity .2s' }}>→</span>}
       </div>
     </Tag>);
 
@@ -286,7 +278,6 @@ function SiteV1() {
       <V1Metodologia />
       <V1Beneficios />
       <V1Segmentos />
-      <V1Sobre />
       <V1Contato />
       <V1Footer />
     </div>);
