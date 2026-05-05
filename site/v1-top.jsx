@@ -72,7 +72,7 @@ function V1Nav() {
 function V1Hero() {
   return (
     <section id="top" style={{
-      padding: '88px 56px 120px',
+      padding: '64px 56px 120px',
       position: 'relative',
       overflow: 'hidden',
       fontFamily: v1.sans
@@ -109,7 +109,7 @@ function V1Hero() {
       <div style={{ maxWidth: 1240, margin: '0 auto', position: 'relative' }}>
         <h1 style={{
           margin: 0,
-          fontSize: 'clamp(56px, 9vw, 132px)',
+          fontSize: 'clamp(56px, 8vw, 132px)',
           lineHeight: 0.92,
           letterSpacing: '-0.04em',
           fontWeight: 500,
@@ -197,7 +197,7 @@ function V1HeroMockup() {
       <div style={{ borderRight: `1px solid ${v1.rule}`, paddingRight: 24 }}>
         <div style={{ fontSize: 12, color: v1.inkMuted, fontFamily: v1.mono, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Receita · YTD</div>
         <div style={{ fontSize: 44, letterSpacing: '-0.03em', fontWeight: 500, marginTop: 6, color: v1.ink }}>
-          R$ <CountUp to={48.2} suffix="M" />
+          R$ <CountUp to={48.2} suffix="M" duration={3000} />
         </div>
         <div style={{ fontSize: 13, color: v1.accent === '#97C93B' ? '#5e8a1f' : v1.accent, marginTop: 4, fontWeight: 500 }}>
           ↑ 12,4% vs. ano anterior

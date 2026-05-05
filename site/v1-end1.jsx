@@ -180,17 +180,17 @@ function V1Beneficios() {
     {
       icon: 'sun',
       title: 'Decisão sem achismo.',
-      body: <>Quando o número certo está na tela, a reunião muda. Para de discutir <em>qual</em> dado é o real e começa a discutir <em>o que fazer</em> com ele.</>,
+      body: <>Quando o número certo está na tela, a reunião muda. Pare de discutir <em>qual</em> dado é o real e comece a discutir <em>o que</em> fazer com ele.</>,
     },
     {
       icon: 'clock',
       title: 'Tempo de volta.',
-      body: 'O time deixa de fechar planilha à mão toda segunda. O relatório se monta sozinho, e as horas livres viram análise — não trabalho mecânico.',
+      body: 'O time deixa de fechar planilha à mão toda semana. O relatório se atualiza sozinho, e as horas livres viram análise — não trabalho mecânico.',
     },
     {
       icon: 'pulse',
       title: 'Visão do todo.',
-      body: 'Vendas, estoque, financeiro, produção — conversando entre si. Para de comparar planilhas que não fecham e passa a enxergar o negócio inteiro.',
+      body: 'Vendas, estoque, financeiro, produção — tudo conversando entre si. Em vez de comparar planilhas que não fecham, você enxerga o negócio inteiro.',
     },
   ];
   return (

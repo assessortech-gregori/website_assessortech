@@ -1,41 +1,120 @@
 // V1 — meio: faixa de prova, manifesto, diferenciais
 
 function V1AnySource() {
+  // 18 logos em site/img/logos/. Os arquivos têm prefixo "logo-" (ex: logo-chandon.png).
+  // Pra adicionar/remover/reordenar: edite só este array.
+  const logos = [
+    { slug: 'chandon',       nome: 'Chandon' },
+    { slug: 'moet-hennessy', nome: 'Moët Hennessy' },
+    { slug: 'tecnovin',      nome: 'Tecnovin' },
+    { slug: 'caderode',      nome: 'Caderode' },
+    { slug: 'giordani',      nome: 'Giordani Turismo' },
+    { slug: 'robopac',       nome: 'Robopac' },
+    { slug: 'bepo',          nome: 'Bepo' },
+    { slug: 'ultragaz',      nome: 'Ultragaz' },
+    { slug: 'neogas',        nome: 'NEOgas' },
+    { slug: 'gebb-work',     nome: 'Gebb Work' },
+    { slug: 'toli',          nome: 'Toli Distribuidora' },
+    { slug: 'ramarim',       nome: 'Calçados Ramarim' },
+    { slug: 'jopemar',       nome: 'Jopemar' },
+    { slug: 'express',       nome: 'Express Restaurantes' },
+    { slug: 'fva',           nome: 'FVA' },
+    { slug: 'sular',         nome: 'Sular Móveis' },
+    { slug: 'irapuru',       nome: 'Irapuru Transportes' },
+    { slug: 'control-tech',  nome: 'Control Tech' },
+  ];
+
+  // Duplica a lista pra criar o efeito de loop infinito sem corte visual
+  const logosLoop = [...logos, ...logos];
+
   return (
     <section style={{
       padding: '64px 56px',
       borderTop: `1px solid ${v1.rule}`,
       borderBottom: `1px solid ${v1.rule}`,
       background: v1.card,
-      fontFamily: v1.sans
+      fontFamily: v1.sans,
+      overflow: 'hidden'
     }}>
+      <style>{`
+        @keyframes v1LogosScroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+        .v1-logos-track {
+          display: flex;
+          gap: 64px;
+          align-items: center;
+          width: max-content;
+          animation: v1LogosScroll 70s linear infinite;
+        }
+        .v1-logos-mask:hover .v1-logos-track {
+          animation-play-state: paused;
+        }
+        .v1-logo-item {
+          flex-shrink: 0;
+          height: 64px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0.55;
+          filter: grayscale(100%);
+          transition: opacity .25s ease, filter .25s ease;
+        }
+        .v1-logo-item:hover {
+          opacity: 1;
+          filter: grayscale(0%);
+        }
+        .v1-logo-item img {
+          max-height: 100%;
+          max-width: 160px;
+          width: auto;
+          height: auto;
+          display: block;
+          object-fit: contain;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .v1-logos-track { animation: none; }
+        }
+      `}</style>
+
       <div style={{
-        display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 80, maxWidth: 1240, margin: '0 auto', alignItems: 'center'
+        display: 'grid', gridTemplateColumns: '280px 1fr', gap: 80, maxWidth: 1240, margin: '0 auto', alignItems: 'start'
       }}>
         <div>
           <div style={{ fontSize: 12, color: v1.inkMuted, fontFamily: v1.mono, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            Conexão de dados
+            Conexões
           </div>
+          
           <p style={{ fontSize: 22, lineHeight: 1.35, margin: '14px 0 0', color: v1.ink, letterSpacing: '-0.01em' }}>
             Qualquer sistema. Qualquer fonte.{' '}
             <span style={{ color: v1.inkSoft }}>Garimpamos o dado onde ele estiver.</span>
           </p>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-          {['ERPs nacionais', 'ERPs globais', 'Sistemas legados', 'Bancos SQL', 'Planilhas', 'APIs', 'Arquivos CSV/TXT', 'Sistemas próprios'].map((t, i) =>
-          <span key={t} style={{
-            padding: '10px 16px',
-            border: `1px solid ${v1.rule}`,
-            borderRadius: 999,
-            fontSize: 14, color: v1.inkSoft,
-            background: v1.paper,
-            fontFamily: v1.mono, letterSpacing: '-0.01em'
-          }}>{t}</span>
-          )}
+
+        <div>
+          <div style={{ fontSize: 12, color: v1.inkMuted, fontFamily: v1.mono, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 28 }}>
+            Clientes
+          </div>
+
+          <div className="v1-logos-mask" style={{
+            position: 'relative',
+            overflow: 'hidden',
+            WebkitMaskImage: `linear-gradient(90deg, transparent 0, black 60px, black calc(100% - 60px), transparent 100%)`,
+            maskImage: `linear-gradient(90deg, transparent 0, black 60px, black calc(100% - 60px), transparent 100%)`
+          }}>
+            <div className="v1-logos-track">
+              {logosLoop.map((logo, i) => (
+                <div key={`${logo.slug}-${i}`} className="v1-logo-item" title={logo.nome}>
+                  <img src={`site/img/clientes/logo-${logo.slug}.png`} alt={logo.nome} />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 }
 
 function V1Manifesto() {

@@ -109,7 +109,7 @@ function V1Contato() {
               <ContactCard label="E-mail" value="contato@assessortech.com.br" href="mailto:contato@assessortech.com.br" icon="mail" />
               <ContactCard label="Telefone" value="54 3196 8474" href="tel:+555431968474" icon="phone" />
               <ContactCard label="WhatsApp" value="Conversar agora" href="https://api.whatsapp.com/send?1=pt_BR&phone=555431968474" icon="whatsapp" />
-              <ContactCard label="Endereço" value={<>Rua Rio Branco, 1620, Sala 22<br />Bairro Aparecida<br />Flores da Cunha · RS · 95.270-000</>} icon="map" />
+              <ContactCard label="Endereço" value={<>Rua Rio Branco, 1620, Sala 22<br />Bairro Aparecida<br />Flores da Cunha · RS</>} href="https://www.google.com/maps/search/?api=1&query=-29.0305745,-51.1887997&query_place_id=ChIJVa8D6Q2aHpURYL0sZNKPqUw" icon="map" />
             </div>
           </Reveal>
           <Reveal delay={200}>
@@ -202,7 +202,7 @@ function V1ContactForm() {
       }}>
       <FormField label="Nome" placeholder="Como podemos te chamar?" />
       <FormField label="Empresa" placeholder="Nome da sua empresa" />
-      <FormField label="E-mail" placeholder="você@empresa.com" type="email" />
+      <FormField label="E-mail" placeholder="seuemail@empresa.com.br" type="email" />
       <FormField label="Conta pra gente" placeholder="Qual é o problema, situação ou pergunta?" textarea />
       <button type="submit" style={{
         marginTop: 8, padding: '14px 22px', background: v1.ink, color: v1.paper,
