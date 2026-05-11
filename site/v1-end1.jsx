@@ -21,7 +21,7 @@ function V1Metodologia() {
 
         {/* Lista detalhada */}
         <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: '220px 1fr', gap: 0 }}>
-          {steps.map((s, i) => <V1Step key={s.n} {...s} last={i === steps.length - 1} delay={i * 60} />)}
+          {steps.map((s, i) => <V1Step key={s.n} {...s} first={i === 0} last={i === steps.length - 1} delay={i * 60} />)}
         </div>
       </div>
     </section>
@@ -114,12 +114,24 @@ function FlowIcon({ name, color, size = 28 }) {
   }
 }
 
-function V1Step({ n, title, body, icon, last, delay }) {
+function V1Step({ n, title, body, icon, first, last, delay }) {
   return (
     <React.Fragment>
       <Reveal delay={delay} style={{ position: 'relative' }}>
+        {!first && (
+          <div style={{
+            display: 'flex', flexDirection: 'column', gap: 2,
+            alignItems: 'flex-start',
+            paddingLeft: 4,
+            paddingTop: 20,
+            color: v1.primary,
+          }}>
+            <svg width="26" height="11" viewBox="0 0 24 10" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}><path d="M3 2l9 6 9-6" /></svg>
+            <svg width="26" height="11" viewBox="0 0 24 10" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.85 }}><path d="M3 2l9 6 9-6" /></svg>
+          </div>
+        )}
         <div style={{
-          paddingTop: 38,
+          paddingTop: first ? 38 : 14,
           display: 'flex', alignItems: 'center', gap: 16,
         }}>
           <div style={{

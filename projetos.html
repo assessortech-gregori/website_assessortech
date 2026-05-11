@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>AssessorTech</title>
+<title>Projetos · AssessorTech</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,55 +22,14 @@
 
 <div id="root"></div>
 
-<script type="text/babel" src="site/tweaks-panel.jsx"></script>
 <script type="text/babel" src="site/shared.jsx"></script>
 <script type="text/babel" src="site/v1-top.jsx"></script>
-<script type="text/babel" src="site/v1-mid.jsx"></script>
-<script type="text/babel" src="site/v1-end1.jsx"></script>
 <script type="text/babel" src="site/v1-end2.jsx"></script>
+<script type="text/babel" src="site/projetos-data.jsx"></script>
+<script type="text/babel" src="site/projetos.jsx"></script>
 
 <script type="text/babel">
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "v1AccentIntensity": "balanced"
-}/*EDITMODE-END*/;
-
-function App() {
-  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  return (
-    <React.Fragment>
-      <SiteV1 />
-      <TweaksPanel>
-        <TweakSection title="Acentos">
-          <TweakRadio
-            label="Intensidade do verde"
-            value={tweaks.v1AccentIntensity}
-            options={[
-              { value: 'subtle', label: 'Sutil' },
-              { value: 'balanced', label: 'Médio' },
-              { value: 'bold', label: 'Forte' },
-            ]}
-            onChange={v => setTweak('v1AccentIntensity', v)}
-          />
-        </TweakSection>
-      </TweaksPanel>
-    </React.Fragment>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-
-// Hash anchor scroll after React mounts (works for cross-page links like Projetos.html → #contato)
-requestAnimationFrame(() => {
-  setTimeout(() => {
-    if (window.location.hash) {
-      const el = document.querySelector(window.location.hash);
-      if (el) {
-        const top = el.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({ top, behavior: 'instant' });
-      }
-    }
-  }, 50);
-});
+ReactDOM.createRoot(document.getElementById('root')).render(<ProjetosPage />);
 </script>
 
 </body>

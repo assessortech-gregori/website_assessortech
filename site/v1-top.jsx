@@ -19,7 +19,7 @@ const v1 = {
 };
 
 // ─── NAV ─────────────────────────────────────────────────────────
-function V1Nav() {
+function V1Nav({ page = 'home' }) {
   const [scrolled, setScrolled] = React.useState(false);
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -27,6 +27,11 @@ function V1Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
   const links = ['Diferenciais', 'Metodologia', 'Segmentos', 'Contato'];
+  const onHome = page === 'home';
+  const onProjetos = page === 'projetos';
+  // Em outras páginas, links de seção apontam pra home
+  const homeBase = onHome ? '' : 'AssessorTech Site.html';
+  const logoHref = onHome ? '#top' : 'AssessorTech Site.html#top';
   return (
     <nav style={{
       position: 'sticky', top: 0, zIndex: 50,
@@ -39,13 +44,13 @@ function V1Nav() {
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       fontFamily: v1.sans
     }}>
-      <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: v1.ink }}>
+      <a href={logoHref} style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: v1.accent }}>
         <AssessorLogo size={26} primary={v1.primary} accent={v1.accent} />
         <span style={{ fontSize: 16, letterSpacing: '-0.01em', fontWeight: 500 }}>AssessorTech</span>
       </a>
       <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
         {links.map((l) =>
-        <a key={l} href={`#${l.toLowerCase()}`} style={{
+        <a key={l} href={`${homeBase}#${l.toLowerCase()}`} style={{
           fontSize: 14, color: v1.inkSoft, textDecoration: 'none',
           transition: 'color .15s'
         }}
@@ -53,16 +58,20 @@ function V1Nav() {
         onMouseLeave={(e) => e.currentTarget.style.color = v1.inkSoft}>
           {l}</a>
         )}
-        <a href="#contato" style={{
+        <a href="Projetos.html" style={{
+          position: 'relative',
           fontSize: 14, fontWeight: 500,
           padding: '9px 16px', borderRadius: 999,
-          background: v1.ink, color: v1.paper,
+          background: onProjetos ? v1.primary : v1.ink,
+          color: v1.paper,
           textDecoration: 'none',
+          display: 'inline-flex', alignItems: 'center', gap: 8,
           transition: 'transform .15s, background .15s'
         }}
-        onMouseEnter={(e) => {e.currentTarget.style.background = v1.primary;e.currentTarget.style.transform = 'translateY(-1px)';}}
-        onMouseLeave={(e) => {e.currentTarget.style.background = v1.ink;e.currentTarget.style.transform = 'translateY(0)';}}>
-          Fale conosco →</a>
+        onMouseEnter={(e) => {if (!onProjetos) {e.currentTarget.style.background = v1.primary;}e.currentTarget.style.transform = 'translateY(-1px)';}}
+        onMouseLeave={(e) => {if (!onProjetos) {e.currentTarget.style.background = v1.ink;}e.currentTarget.style.transform = 'translateY(0)';}}>
+          {onProjetos && <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: '50%', background: v1.accent, display: 'inline-block' }} />}
+          Projetos {!onProjetos && '→'}</a>
       </div>
     </nav>);
 

@@ -103,16 +103,16 @@ function V1Contato() {
             <span style={{ fontFamily: v1.serif, fontStyle: 'italic', fontWeight: 500, color: v1.primary }}>A gente responde</span>{' '}rápido.
           </h2>
         </Reveal>
-        <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 80, alignItems: 'start' }}>
-          <Reveal delay={120}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+        <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 80, alignItems: 'stretch' }}>
+          <Reveal delay={120} style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
               <ContactCard label="E-mail" value="contato@assessortech.com.br" href="mailto:contato@assessortech.com.br" icon="mail" />
               <ContactCard label="Telefone" value="54 3196 8474" href="tel:+555431968474" icon="phone" />
               <ContactCard label="WhatsApp" value="Conversar agora" href="https://api.whatsapp.com/send?1=pt_BR&phone=555431968474" icon="whatsapp" />
-              <ContactCard label="Endereço" value={<>Rua Rio Branco, 1620, Sala 22<br />Bairro Aparecida<br />Flores da Cunha · RS</>} href="https://www.google.com/maps/search/?api=1&query=-29.0305745,-51.1887997&query_place_id=ChIJVa8D6Q2aHpURYL0sZNKPqUw" icon="map" />
+              <ContactCard label="Endereço" value={<>Rua Rio Branco, 1620, Sala 22 · Bairro Aparecida · Flores da Cunha · RS</>} href="https://www.google.com/maps/search/?api=1&query=-29.0305745,-51.1887997&query_place_id=ChIJVa8D6Q2aHpURYL0sZNKPqUw" icon="map" />
             </div>
           </Reveal>
-          <Reveal delay={200}>
+          <Reveal delay={200} style={{ display: 'flex' }}>
             <V1ContactForm />
           </Reveal>
         </div>
@@ -153,40 +153,43 @@ function ContactCard({ label, value, href, icon }) {
       target={href && href.startsWith('http') ? '_blank' : undefined}
       rel={href && href.startsWith('http') ? 'noopener noreferrer' : undefined}
       style={{
-        padding: '24px 24px 28px',
+        flex: 1,
+        padding: '20px 24px',
         border: `1px solid ${hover ? v1.accent : v1.rule}`,
         borderRadius: 8,
         background: hover ? v1.card : v1.paper,
         color: v1.ink,
         textDecoration: 'none',
-        display: 'block',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 20,
         transition: 'all .2s',
         cursor: href ? 'pointer' : 'default',
         transform: hover && href ? 'translateY(-2px)' : 'translateY(0)',
         boxShadow: hover ? `0 8px 22px -10px ${v1.accent}55` : 'none',
         position: 'relative',
       }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      {icon && (
         <div style={{
-          fontSize: 12, fontFamily: v1.mono, letterSpacing: '0.06em', textTransform: 'uppercase',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          width: 36, height: 36, borderRadius: 999,
+          background: 'transparent', flexShrink: 0,
+          transition: 'color .2s',
+        }}>
+          <ContactIcon name={icon} color={hover ? v1.accent : v1.inkMuted} size={20} />
+        </div>
+      )}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0, flex: 1 }}>
+        <div style={{
+          fontSize: 11, fontFamily: v1.mono, letterSpacing: '0.08em', textTransform: 'uppercase',
           color: v1.inkMuted,
         }}>{label}</div>
-        {icon && (
-          <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            width: 28, height: 28, borderRadius: 999,
-            background: 'transparent',
-            transition: 'color .2s',
-          }}>
-            <ContactIcon name={icon} color={hover ? v1.accent : v1.inkMuted} size={18} />
-          </div>
-        )}
-      </div>
-      <div style={{
-        marginTop: 14, fontSize: 18, lineHeight: 1.35, letterSpacing: '-0.01em',
-        color: 'inherit', fontWeight: 500,
-      }}>
-        {value}
+        <div style={{
+          fontSize: 16, lineHeight: 1.35, letterSpacing: '-0.01em',
+          color: 'inherit', fontWeight: 500,
+        }}>
+          {value}
+        </div>
       </div>
     </Tag>);
 
@@ -197,6 +200,7 @@ function V1ContactForm() {
     <form
       onSubmit={(e) => {e.preventDefault();alert('Formulário de demo — conecte ao backend.');}}
       style={{
+        flex: 1,
         padding: 32, background: v1.card, border: `1px solid ${v1.rule}`, borderRadius: 8,
         display: 'flex', flexDirection: 'column', gap: 20
       }}>
@@ -256,8 +260,42 @@ function V1Footer() {
         <AssessorLogo size={20} primary={v1.primary} accent={v1.accent} />
         <span style={{ fontSize: 13, color: v1.inkMuted }}>© AssessorTech · Business Intelligence · Desde 2019</span>
       </div>
-      <div style={{ fontSize: 13, color: v1.inkMuted, fontFamily: v1.mono }}>
-        Flores da Cunha · RS · Brasil
+      <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
+        <a href="Privacidade.html" style={{
+          fontSize: 12, color: v1.inkMuted, fontFamily: v1.sans,
+          textDecoration: 'none', letterSpacing: '0.01em',
+          transition: 'color .15s'
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.color = v1.ink; }}
+        onMouseLeave={(e) => { e.currentTarget.style.color = v1.inkMuted; }}>
+          Política de privacidade
+        </a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <a href="https://www.instagram.com/assessortech_bi/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: v1.inkMuted,
+            transition: 'color .15s'
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = v1.ink; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = v1.inkMuted; }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/company/assessortech/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: v1.inkMuted,
+            transition: 'color .15s'
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = v1.ink; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = v1.inkMuted; }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+            </svg>
+          </a>
+        </div>
       </div>
     </footer>);
 
