@@ -16,6 +16,7 @@ function V1AnySource() {
     { slug: 'gebb-work',     nome: 'Gebb Work' },
     { slug: 'toli',          nome: 'Toli Distribuidora' },
     { slug: 'ramarim',       nome: 'Calçados Ramarim' },
+    { slug: 'rexfort',       nome: 'Rexfort' },
     { slug: 'jopemar',       nome: 'Jopemar' },
     { slug: 'express',       nome: 'Express Restaurantes' },
     { slug: 'fva',           nome: 'FVA' },
