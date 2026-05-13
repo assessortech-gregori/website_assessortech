@@ -207,7 +207,7 @@ function V1ContactForm() {
       <FormField label="Nome" placeholder="Como podemos te chamar?" />
       <FormField label="Empresa" placeholder="Nome da sua empresa" />
       <FormField label="E-mail" placeholder="seuemail@empresa.com.br" type="email" />
-      <FormField label="Conta pra gente" placeholder="Qual é o problema, situação ou pergunta?" textarea />
+      <FormField label="Conta pra gente" placeholder="Como podemos ajudar sua empresa?" textarea />
       <button type="submit" style={{
         marginTop: 8, padding: '14px 22px', background: v1.ink, color: v1.paper,
         border: 'none', borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: v1.sans,
