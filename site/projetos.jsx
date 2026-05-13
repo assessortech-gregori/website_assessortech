@@ -267,7 +267,7 @@ function V1ProjetosCTA() {
           </p>
         </div>
         <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <a href="AssessorTech Site.html#contato" style={{
+          <a href="index.html#contato" style={{
             fontSize: 17, fontWeight: 500,
             padding: '20px 28px', borderRadius: 999,
             background: v1.primary, color: '#fff',
