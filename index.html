@@ -22,7 +22,6 @@
 
 <div id="root"></div>
 
-<script type="text/babel" src="site/tweaks-panel.jsx"></script>
 <script type="text/babel" src="site/shared.jsx"></script>
 <script type="text/babel" src="site/v1-top.jsx"></script>
 <script type="text/babel" src="site/v1-mid.jsx"></script>
@@ -30,36 +29,9 @@
 <script type="text/babel" src="site/v1-end2.jsx"></script>
 
 <script type="text/babel">
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "v1AccentIntensity": "balanced"
-}/*EDITMODE-END*/;
+ReactDOM.createRoot(document.getElementById('root')).render(<SiteV1 />);
 
-function App() {
-  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  return (
-    <React.Fragment>
-      <SiteV1 />
-      <TweaksPanel>
-        <TweakSection title="Acentos">
-          <TweakRadio
-            label="Intensidade do verde"
-            value={tweaks.v1AccentIntensity}
-            options={[
-              { value: 'subtle', label: 'Sutil' },
-              { value: 'balanced', label: 'Médio' },
-              { value: 'bold', label: 'Forte' },
-            ]}
-            onChange={v => setTweak('v1AccentIntensity', v)}
-          />
-        </TweakSection>
-      </TweaksPanel>
-    </React.Fragment>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-
-// Hash anchor scroll after React mounts (works for cross-page links like Projetos.html → #contato)
+// Hash anchor scroll after React mounts (works for cross-page links like projetos.html → #contato)
 requestAnimationFrame(() => {
   setTimeout(() => {
     if (window.location.hash) {

@@ -30,8 +30,8 @@ function V1Nav({ page = 'home' }) {
   const onHome = page === 'home';
   const onProjetos = page === 'projetos';
   // Em outras páginas, links de seção apontam pra home
-  const homeBase = onHome ? '' : 'AssessorTech Site.html';
-  const logoHref = onHome ? '#top' : 'AssessorTech Site.html#top';
+  const homeBase = onHome ? '' : 'index.html';
+  const logoHref = onHome ? '#top' : 'index.html#top';
   return (
     <nav style={{
       position: 'sticky', top: 0, zIndex: 50,
@@ -58,7 +58,7 @@ function V1Nav({ page = 'home' }) {
         onMouseLeave={(e) => e.currentTarget.style.color = v1.inkSoft}>
           {l}</a>
         )}
-        <a href="Projetos.html" style={{
+        <a href="projetos.html" style={{
           position: 'relative',
           fontSize: 14, fontWeight: 500,
           padding: '9px 16px', borderRadius: 999,

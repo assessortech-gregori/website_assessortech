@@ -261,7 +261,7 @@ function V1Footer() {
         <span style={{ fontSize: 13, color: v1.inkMuted }}>© AssessorTech · Business Intelligence · Desde 2019</span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
-        <a href="Privacidade.html" style={{
+        <a href="privacidade.html" style={{
           fontSize: 12, color: v1.inkMuted, fontFamily: v1.sans,
           textDecoration: 'none', letterSpacing: '0.01em',
           transition: 'color .15s'

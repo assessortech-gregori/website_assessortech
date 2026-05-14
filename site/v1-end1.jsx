@@ -119,15 +119,29 @@ function V1Step({ n, title, body, icon, first, last, delay }) {
     <React.Fragment>
       <Reveal delay={delay} style={{ position: 'relative' }}>
         {!first && (
-          <div style={{
+          <div className="v1-step-chev" style={{
             display: 'flex', flexDirection: 'column', gap: 2,
             alignItems: 'flex-start',
             paddingLeft: 4,
             paddingTop: 20,
             color: v1.primary,
           }}>
-            <svg width="26" height="11" viewBox="0 0 24 10" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}><path d="M3 2l9 6 9-6" /></svg>
-            <svg width="26" height="11" viewBox="0 0 24 10" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.85 }}><path d="M3 2l9 6 9-6" /></svg>
+            <style>{`
+              @keyframes v1ChevCascade {
+                0%, 100% { opacity: 0.25; }
+                20% { opacity: 1; }
+                60% { opacity: 0.25; }
+              }
+              .v1-step-chev svg {
+                animation: v1ChevCascade 1.8s ease-in-out infinite;
+                animation-delay: 0.25s;
+              }
+              .v1-step-chev svg:nth-child(2) {
+                animation-delay: 0s;
+              }
+            `}</style>
+            <svg width="26" height="11" viewBox="0 0 24 10" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 2l9 6 9-6" /></svg>
+            <svg width="26" height="11" viewBox="0 0 24 10" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 2l9 6 9-6" /></svg>
           </div>
         )}
         <div style={{
