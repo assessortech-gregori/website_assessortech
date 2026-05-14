@@ -1,5 +1,5 @@
 // Página Projetos — composição (hero, galeria, stack, CTA)
-// Usa v1 tokens, V1Nav, V1Footer e PROJETOS / ProjetoVisual de projetos-data.jsx
+// Usa tokens tokens, Nav, Footer e PROJETOS / ProjetoVisual de projetos-data.jsx
 
 const projStyles = {
   embedBase: 'https://app.powerbi.com/view?r='
@@ -14,7 +14,7 @@ function ProjetoCover({ projeto, height = 460 }) {
       background: '#0E1116',
       borderRadius: 4,
       overflow: 'hidden',
-      border: `1px solid ${v1.rule}`
+      border: `1px solid ${tokens.rule}`
     }}>
       <iframe
         src={projStyles.embedBase + projeto.embedKey}
@@ -29,12 +29,12 @@ function ProjetoCover({ projeto, height = 460 }) {
 }
 
 // ─── Hero compacto ───────────────────────────────────────────────
-function V1ProjetosHero() {
+function ProjetosHero() {
   return (
     <section id="top" style={{
       padding: '48px 56px 40px',
       position: 'relative',
-      fontFamily: v1.sans
+      fontFamily: tokens.sans
     }}>
       <div style={{ maxWidth: 1240, margin: '0 auto' }}>
         <h1 style={{
@@ -43,11 +43,11 @@ function V1ProjetosHero() {
           lineHeight: 1,
           letterSpacing: '-0.04em',
           fontWeight: 500,
-          color: v1.ink,
+          color: tokens.ink,
           whiteSpace: 'nowrap'
         }}>
           Demos{' '}
-          <span style={{ fontFamily: v1.serif, fontStyle: 'italic', color: v1.primary, fontWeight: 500 }}>
+          <span style={{ fontFamily: tokens.serif, fontStyle: 'italic', color: tokens.primary, fontWeight: 500 }}>
             interativas
           </span>
           . Pode clicar.
@@ -62,8 +62,8 @@ function ProjetoCard({ projeto, density, idx }) {
   return (
     <article id={`p-${projeto.num}`} style={{
       padding: density === 'compact' ? '40px 0 24px' : '64px 0 32px',
-      borderTop: idx === 0 ? 'none' : `1px solid ${v1.rule}`,
-      fontFamily: v1.sans
+      borderTop: idx === 0 ? 'none' : `1px solid ${tokens.rule}`,
+      fontFamily: tokens.sans
     }}>
       <div style={{
         display: 'flex',
@@ -79,7 +79,7 @@ function ProjetoCard({ projeto, density, idx }) {
           lineHeight: 1.05,
           letterSpacing: '-0.03em',
           fontWeight: 500,
-          color: v1.ink
+          color: tokens.ink
         }}>
           {projeto.titulo}
         </h2>
@@ -88,12 +88,12 @@ function ProjetoCard({ projeto, density, idx }) {
           target="_blank" rel="noopener noreferrer"
           style={{
             fontSize: 13,
-            color: v1.inkSoft, textDecoration: 'none',
+            color: tokens.inkSoft, textDecoration: 'none',
             transition: 'color .15s',
             whiteSpace: 'nowrap'
           }}
-          onMouseEnter={e => e.currentTarget.style.color = v1.ink}
-          onMouseLeave={e => e.currentTarget.style.color = v1.inkSoft}>
+          onMouseEnter={e => e.currentTarget.style.color = tokens.ink}
+          onMouseLeave={e => e.currentTarget.style.color = tokens.inkSoft}>
           Tela cheia ↗
         </a>
       </div>
@@ -104,9 +104,9 @@ function ProjetoCard({ projeto, density, idx }) {
 }
 
 // ─── Galeria simples (sem categorias) ────────────────────────────
-function V1ProjetosGallery({ density }) {
+function ProjetosGallery({ density }) {
   return (
-    <section style={{ padding: '24px 56px 80px', fontFamily: v1.sans }}>
+    <section style={{ padding: '24px 56px 80px', fontFamily: tokens.sans }}>
       <div style={{ maxWidth: 1240, margin: '0 auto' }}>
         {PROJETOS.map((p, i) => (
           <ProjetoCard
@@ -122,7 +122,7 @@ function V1ProjetosGallery({ density }) {
 }
 
 // ─── Stack vertical com índice sticky ────────────────────────────
-function V1ProjetosStack({ density }) {
+function ProjetosStack({ density }) {
   const [active, setActive] = React.useState(PROJETOS[0].num);
   React.useEffect(() => {
     const obs = new IntersectionObserver((entries) => {
@@ -141,7 +141,7 @@ function V1ProjetosStack({ density }) {
   }, []);
 
   return (
-    <section style={{ padding: '24px 56px 80px', fontFamily: v1.sans }}>
+    <section style={{ padding: '24px 56px 80px', fontFamily: tokens.sans }}>
       <div style={{
         maxWidth: 1280, margin: '0 auto',
         display: 'grid', gridTemplateColumns: '220px 1fr', gap: 56,
@@ -152,7 +152,7 @@ function V1ProjetosStack({ density }) {
           paddingTop: 48,
           alignSelf: 'start'
         }}>
-          <div style={{ fontFamily: v1.mono, fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: v1.inkMuted, marginBottom: 18 }}>
+          <div style={{ fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: tokens.inkMuted, marginBottom: 18 }}>
             Índice
           </div>
           <nav style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -163,17 +163,17 @@ function V1ProjetosStack({ density }) {
                   style={{
                     display: 'flex', alignItems: 'baseline', gap: 12,
                     padding: '10px 0',
-                    color: isActive ? v1.ink : v1.inkMuted,
+                    color: isActive ? tokens.ink : tokens.inkMuted,
                     textDecoration: 'none',
                     fontSize: 14,
-                    borderBottom: `1px solid ${v1.rule}`,
+                    borderBottom: `1px solid ${tokens.rule}`,
                     transition: 'color .2s'
                   }}>
-                  <span style={{ fontFamily: v1.mono, fontSize: 11, color: isActive ? v1.primary : v1.inkMuted, width: 22 }}>
+                  <span style={{ fontFamily: tokens.mono, fontSize: 11, color: isActive ? tokens.primary : tokens.inkMuted, width: 22 }}>
                     {p.num}
                   </span>
                   <span style={{ flex: 1, fontWeight: isActive ? 500 : 400 }}>{p.titulo}</span>
-                  {isActive && <span style={{ width: 6, height: 6, borderRadius: 999, background: v1.accent }} />}
+                  {isActive && <span style={{ width: 6, height: 6, borderRadius: 999, background: tokens.accent }} />}
                 </a>
               );
             })}
@@ -184,7 +184,7 @@ function V1ProjetosStack({ density }) {
           {PROJETOS.map((p, i) => (
             <article key={p.num} id={`s-${p.num}`} data-num={p.num} style={{
               padding: density === 'compact' ? '40px 0' : '64px 0',
-              borderBottom: i === PROJETOS.length - 1 ? 'none' : `1px solid ${v1.rule}`
+              borderBottom: i === PROJETOS.length - 1 ? 'none' : `1px solid ${tokens.rule}`
             }}>
               <div style={{
                 display: 'flex',
@@ -200,14 +200,14 @@ function V1ProjetosStack({ density }) {
                   lineHeight: 1.05,
                   letterSpacing: '-0.03em',
                   fontWeight: 500,
-                  color: v1.ink
+                  color: tokens.ink
                 }}>
                   {p.titulo}
                 </h2>
                 <a
                   href={projStyles.embedBase + p.embedKey}
                   target="_blank" rel="noopener noreferrer"
-                  style={{ fontSize: 13, color: v1.inkSoft, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                  style={{ fontSize: 13, color: tokens.inkSoft, textDecoration: 'none', whiteSpace: 'nowrap' }}>
                   Tela cheia ↗
                 </a>
               </div>
@@ -221,12 +221,12 @@ function V1ProjetosStack({ density }) {
 }
 
 // ─── CTA final ───────────────────────────────────────────────────
-function V1ProjetosCTA() {
+function ProjetosCTA() {
   return (
-    <section style={{ padding: '80px 56px 120px', fontFamily: v1.sans }}>
+    <section style={{ padding: '80px 56px 120px', fontFamily: tokens.sans }}>
       <div style={{
         maxWidth: 1240, margin: '0 auto',
-        background: v1.ink, color: v1.paper,
+        background: tokens.ink, color: tokens.paper,
         borderRadius: 14,
         padding: '72px 64px',
         display: 'grid',
@@ -253,7 +253,7 @@ function V1ProjetosCTA() {
             fontWeight: 500
           }}>
             Quer um painel desses{' '}
-            <span style={{ fontFamily: v1.serif, fontStyle: 'italic', color: v1.accent, fontWeight: 500 }}>
+            <span style={{ fontFamily: tokens.serif, fontStyle: 'italic', color: tokens.accent, fontWeight: 500 }}>
               para a sua empresa?
             </span>
           </h2>
@@ -270,13 +270,13 @@ function V1ProjetosCTA() {
           <a href="index.html#contato" style={{
             fontSize: 17, fontWeight: 500,
             padding: '20px 28px', borderRadius: 999,
-            background: v1.primary, color: '#fff',
+            background: tokens.primary, color: '#fff',
             textDecoration: 'none',
             textAlign: 'center',
             transition: 'transform .15s, box-shadow .2s',
             boxShadow: '0 1px 0 rgba(0,0,0,.04)'
           }}
-          onMouseEnter={(e) => {e.currentTarget.style.transform = 'translateY(-2px)';e.currentTarget.style.boxShadow = `0 12px 32px ${v1.primary}80`;}}
+          onMouseEnter={(e) => {e.currentTarget.style.transform = 'translateY(-2px)';e.currentTarget.style.boxShadow = `0 12px 32px ${tokens.primary}80`;}}
           onMouseLeave={(e) => {e.currentTarget.style.transform = 'translateY(0)';e.currentTarget.style.boxShadow = '0 1px 0 rgba(0,0,0,.04)';}}>
             Conversar com a gente →
           </a>
@@ -290,14 +290,14 @@ function V1ProjetosCTA() {
 function ProjetosPage() {
   return (
     <div data-screen-label="Projetos" style={{
-      background: v1.paper, color: v1.ink, fontFamily: v1.sans,
+      background: tokens.paper, color: tokens.ink, fontFamily: tokens.sans,
       minHeight: '100vh', position: 'relative'
     }}>
-      <V1Nav page="projetos" />
-      <V1ProjetosHero />
-      <V1ProjetosStack density="normal" />
-      <V1ProjetosCTA />
-      <V1Footer />
+      <Nav page="projetos" />
+      <ProjetosHero />
+      <ProjetosStack density="normal" />
+      <ProjetosCTA />
+      <Footer />
     </div>
   );
 }

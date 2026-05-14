@@ -1,12 +1,12 @@
 // Página Política de Privacidade — texto genérico, LGPD-aware.
-// Layout editorial, mesma identidade visual da v1.
+// Layout editorial, mesma identidade visual da tokens.
 
-function V1PrivacidadeHero() {
+function PrivacidadeHero() {
   return (
     <section style={{
       padding: '120px 56px 60px',
-      fontFamily: v1.sans,
-      borderBottom: `1px solid ${v1.rule}`
+      fontFamily: tokens.sans,
+      borderBottom: `1px solid ${tokens.rule}`
     }}>
       <div style={{ maxWidth: 880, margin: '0 auto' }}>
         <h1 style={{
@@ -21,7 +21,7 @@ function V1PrivacidadeHero() {
         <p style={{
           margin: '32px 0 0',
           fontSize: 18, lineHeight: 1.55,
-          color: v1.inkMuted,
+          color: tokens.inkMuted,
           maxWidth: 620
         }}>
           Como a AssessorTech trata os dados pessoais que recebe de quem nos procura,
@@ -29,7 +29,7 @@ function V1PrivacidadeHero() {
         </p>
         <div style={{
           marginTop: 40, fontSize: 12, letterSpacing: '0.06em',
-          color: v1.inkMuted, fontFamily: v1.mono
+          color: tokens.inkMuted, fontFamily: tokens.mono
         }}>
           Última atualização: 11 de maio de 2026
         </div>
@@ -46,7 +46,7 @@ function PrivSection({ n, title, children }) {
         marginBottom: 20
       }}>
         <span style={{
-          fontSize: 12, fontFamily: v1.mono, color: v1.accent,
+          fontSize: 12, fontFamily: tokens.mono, color: tokens.accent,
           letterSpacing: '0.08em'
         }}>
           {String(n).padStart(2, '0')}
@@ -55,13 +55,13 @@ function PrivSection({ n, title, children }) {
           margin: 0,
           fontSize: 26, fontWeight: 500,
           letterSpacing: '-0.01em',
-          color: v1.ink
+          color: tokens.ink
         }}>
           {title}
         </h2>
       </div>
       <div style={{
-        fontSize: 16, lineHeight: 1.7, color: v1.ink,
+        fontSize: 16, lineHeight: 1.7, color: tokens.ink,
         maxWidth: 680
       }}>
         {children}
@@ -70,14 +70,14 @@ function PrivSection({ n, title, children }) {
   );
 }
 
-function V1PrivacidadeBody() {
+function PrivacidadeBody() {
   const pStyle = { margin: '0 0 16px' };
   const ulStyle = { margin: '0 0 16px', paddingLeft: 20 };
   const liStyle = { marginBottom: 8 };
-  const linkStyle = { color: v1.primary, textDecoration: 'none', borderBottom: `1px solid ${v1.primary}40` };
+  const linkStyle = { color: tokens.primary, textDecoration: 'none', borderBottom: `1px solid ${tokens.primary}40` };
 
   return (
-    <section style={{ padding: '40px 56px 120px', fontFamily: v1.sans }}>
+    <section style={{ padding: '40px 56px 120px', fontFamily: tokens.sans }}>
       <div style={{ maxWidth: 880, margin: '0 auto' }}>
 
         <PrivSection n={1} title="Quem somos">
@@ -185,13 +185,13 @@ function V1PrivacidadeBody() {
 function PrivacidadePage() {
   return (
     <div data-screen-label="Privacidade" style={{
-      background: v1.paper, color: v1.ink, fontFamily: v1.sans,
+      background: tokens.paper, color: tokens.ink, fontFamily: tokens.sans,
       minHeight: '100vh'
     }}>
-      <V1Nav page="privacidade" />
-      <V1PrivacidadeHero />
-      <V1PrivacidadeBody />
-      <V1Footer />
+      <Nav page="privacidade" />
+      <PrivacidadeHero />
+      <PrivacidadeBody />
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,25 @@
-// Componentes compartilhados das duas variações.
-// Reveals on scroll, count-up de números, etc.
+// V1 — Editorial Confidence
+// Stripe-like: papel dominante, serif editorial pontual, animações sutis,
+// muito respiro, hierarquia tipográfica forte.
+
+const tokens = {
+  paper: '#FAFAF7',
+  ink: '#0E1116',
+  inkSoft: 'rgba(14,17,22,.66)',
+  inkMuted: 'rgba(14,17,22,.45)',
+  rule: 'rgba(14,17,22,.10)',
+  primary: '#3374BB',
+  primaryDeep: '#1F4F87',
+  accent: '#97C93B',
+  card: '#FFFFFF',
+  sans: '"Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
+  serif: '"Lora", "Times New Roman", serif',
+  serifNumber: '"Crimson Pro", "Times New Roman", serif',
+  mono: '"Geist Mono", "JetBrains Mono", ui-monospace, monospace'
+};
+
+// Utilitários compartilhados pelas três páginas:
+// Reveals on scroll, count-up de números, logo, etc.
 
 const useReveal = (threshold = 0.15) => {
   const ref = React.useRef(null);
@@ -105,4 +125,4 @@ function ImagePlaceholder({ label, ratio = '16/9', tone = 'light' }) {
   );
 }
 
-Object.assign(window, { useReveal, Reveal, CountUp, AssessorLogo, ImagePlaceholder });
+Object.assign(window, { tokens, useReveal, Reveal, CountUp, AssessorLogo, ImagePlaceholder });

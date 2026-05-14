@@ -14,35 +14,29 @@
   html { scroll-behavior: smooth; }
 </style>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 </head>
 <body>
 
 <div id="root"></div>
 
-<script type="text/babel" src="site/shared.jsx"></script>
-<script type="text/babel" src="site/v1-top.jsx"></script>
-<script type="text/babel" src="site/v1-mid.jsx"></script>
-<script type="text/babel" src="site/v1-end1.jsx"></script>
-<script type="text/babel" src="site/v1-end2.jsx"></script>
+<script src="dist/bundle.js"></script>
+<script>
+  ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(Home));
 
-<script type="text/babel">
-ReactDOM.createRoot(document.getElementById('root')).render(<SiteV1 />);
-
-// Hash anchor scroll after React mounts (works for cross-page links like projetos.html → #contato)
-requestAnimationFrame(() => {
-  setTimeout(() => {
-    if (window.location.hash) {
-      const el = document.querySelector(window.location.hash);
-      if (el) {
-        const top = el.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({ top, behavior: 'instant' });
+  // Hash anchor scroll after React mounts (cross-page links like projetos.html → #contato)
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      if (window.location.hash) {
+        const el = document.querySelector(window.location.hash);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top, behavior: 'instant' });
+        }
       }
-    }
-  }, 50);
-});
+    }, 50);
+  });
 </script>
 
 </body>
