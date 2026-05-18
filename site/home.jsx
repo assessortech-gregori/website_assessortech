@@ -957,32 +957,119 @@ function ContactCard({ label, value, href, icon }) {
 
 }
 
+// Web3Forms access key — endpoint público, OK ficar exposto.
+const WEB3FORMS_KEY = '2adf276b-1996-44b2-9bb3-645d14bb9f6f';
+
 function ContactForm() {
+  const [status, setStatus] = React.useState('idle'); // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = React.useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setStatus('sending');
+    setErrorMsg('');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      });
+      const json = await res.json();
+      if (json.success) {
+        setStatus('success');
+        form.reset();
+      } else {
+        setStatus('error');
+        setErrorMsg(json.message || 'Não foi possível enviar. Tente novamente.');
+      }
+    } catch (err) {
+      setStatus('error');
+      setErrorMsg('Falha de conexão. Tente novamente em instantes.');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <div style={{
+        flex: 1,
+        padding: 32, background: tokens.card, border: `1px solid ${tokens.rule}`, borderRadius: 8,
+        display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start',
+        gap: 16
+      }}>
+        <div style={{
+          width: 56, height: 56, borderRadius: 999,
+          background: `${tokens.accent}25`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5e8a1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 style={{
+          margin: 0, fontSize: 26, fontWeight: 500, color: tokens.ink, letterSpacing: '-0.02em'
+        }}>Mensagem enviada.</h3>
+        <p style={{ margin: 0, color: tokens.inkSoft, fontSize: 16, lineHeight: 1.5 }}>
+          Recebemos seu contato e respondemos em breve. Obrigado.
+        </p>
+      </div>
+    );
+  }
+
+  const sending = status === 'sending';
+
   return (
     <form
-      onSubmit={(e) => {e.preventDefault();alert('Formulário de demo — conecte ao backend.');}}
+      onSubmit={handleSubmit}
       style={{
         flex: 1,
         padding: 32, background: tokens.card, border: `1px solid ${tokens.rule}`, borderRadius: 8,
         display: 'flex', flexDirection: 'column', gap: 20
       }}>
-      <FormField label="Nome" placeholder="Como podemos te chamar?" />
-      <FormField label="Empresa" placeholder="Nome da sua empresa" />
-      <FormField label="E-mail" placeholder="seuemail@empresa.com.br" type="email" />
-      <FormField label="Conta pra gente" placeholder="Como podemos ajudar sua empresa?" textarea />
-      <button type="submit" style={{
-        marginTop: 8, padding: '14px 22px', background: tokens.ink, color: tokens.paper,
-        border: 'none', borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: tokens.sans,
-        cursor: 'pointer', transition: 'background .15s'
-      }}
-      onMouseEnter={(e) => e.currentTarget.style.background = tokens.primary}
-      onMouseLeave={(e) => e.currentTarget.style.background = tokens.ink}>
-        Enviar mensagem</button>
+      {/* Web3Forms */}
+      <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+      <input type="hidden" name="subject" value="Novo contato pelo site · AssessorTech" />
+      <input type="hidden" name="from_name" value="Site AssessorTech" />
+      {/* Honeypot anti-bot */}
+      <input type="checkbox" name="botcheck" tabIndex={-1} style={{ display: 'none' }} />
+
+      <FormField label="Nome" name="nome" placeholder="Como podemos te chamar?" required />
+      <FormField label="Empresa" name="empresa" placeholder="Nome da sua empresa" />
+      <FormField label="E-mail" name="email" placeholder="seuemail@empresa.com.br" type="email" required />
+      <FormField label="Conta pra gente" name="mensagem" placeholder="Como podemos ajudar sua empresa?" textarea required />
+
+      {status === 'error' && (
+        <div style={{
+          padding: '12px 16px',
+          background: 'rgba(179,67,58,.08)',
+          border: '1px solid rgba(179,67,58,.25)',
+          borderRadius: 6,
+          fontSize: 14,
+          color: '#b3433a',
+          lineHeight: 1.4
+        }}>
+          {errorMsg}
+        </div>
+      )}
+
+      <button type="submit"
+        disabled={sending}
+        style={{
+          marginTop: 8, padding: '14px 22px',
+          background: sending ? tokens.inkMuted : tokens.ink,
+          color: tokens.paper,
+          border: 'none', borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: tokens.sans,
+          cursor: sending ? 'wait' : 'pointer', transition: 'background .15s'
+        }}
+        onMouseEnter={(e) => { if (!sending) e.currentTarget.style.background = tokens.primary; }}
+        onMouseLeave={(e) => { if (!sending) e.currentTarget.style.background = tokens.ink; }}>
+        {sending ? 'Enviando…' : 'Enviar mensagem'}
+      </button>
     </form>);
 
 }
 
-function FormField({ label, placeholder, type = 'text', textarea }) {
+function FormField({ label, name, placeholder, type = 'text', textarea, required }) {
   const [focus, setFocus] = React.useState(false);
   const Tag = textarea ? 'textarea' : 'input';
   return (
@@ -990,10 +1077,14 @@ function FormField({ label, placeholder, type = 'text', textarea }) {
       <span style={{
         fontSize: 12, fontFamily: tokens.mono, letterSpacing: '0.06em', textTransform: 'uppercase',
         color: focus ? tokens.primary : tokens.inkMuted, transition: 'color .15s'
-      }}>{label}</span>
+      }}>
+        {label}{required && <span style={{ color: tokens.primary, marginLeft: 4 }}>*</span>}
+      </span>
       <Tag
+        name={name}
         type={textarea ? undefined : type}
         placeholder={placeholder}
+        required={required}
         rows={textarea ? 4 : undefined}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
