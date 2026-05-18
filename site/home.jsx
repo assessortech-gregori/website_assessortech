@@ -285,10 +285,6 @@ function Clientes() {
         </div>
 
         <div>
-          <div style={{ fontSize: 12, color: tokens.inkMuted, fontFamily: tokens.mono, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 28 }}>
-            Clientes
-          </div>
-
           <div className="logos-mask" style={{
             position: 'relative',
             overflow: 'hidden',

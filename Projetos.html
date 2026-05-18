@@ -47,10 +47,9 @@
 
 <style id="mobile-overrides">
   @media (max-width: 768px) {
-    /* NAV — mesma regra das outras páginas */
-    nav > div > a:not([href*="projetos.html"]):not([href*="privacidade.html"]) {
-      display: none !important;
-    }
+    /* NAV — em mobile, esconde os links inline e mostra o hamburger */
+    nav > .nav-links { display: none !important; }
+    nav > .nav-burger { display: flex !important; }
 
     /* PROJETOS STACK — esconde o índice sticky (não faz sentido em mobile).
        minmax(0, 1fr) protege contra filhos de width fixo/grande. */

@@ -52,10 +52,9 @@
      Trabalha em conjunto com a Camada 1 (clamps + auto-fit nos JSX).
      ──────────────────────────────────────────────────────────── */
   @media (max-width: 768px) {
-    /* NAV — esconde links de seção; mantém logo + botão Projetos */
-    nav > div > a:not([href*="projetos.html"]):not([href*="privacidade.html"]) {
-      display: none !important;
-    }
+    /* NAV — em mobile, esconde os links inline e mostra o hamburger */
+    nav > .nav-links { display: none !important; }
+    nav > .nav-burger { display: flex !important; }
 
     /* HERO — grid 1.4fr|1fr → empilhado.
        Uso minmax(0, 1fr) em vez de 1fr puro: permite a coluna encolher

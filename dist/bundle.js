@@ -167,6 +167,7 @@ function Nav({
   page = 'home'
 }) {
   const [scrolled, setScrolled] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener('scroll', onScroll, {
@@ -174,12 +175,22 @@ function Nav({
     });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  React.useEffect(() => {
+    if (menuOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [menuOpen]);
   const links = ['Diferenciais', 'Metodologia', 'Segmentos', 'Contato'];
   const onHome = page === 'home';
   const onProjetos = page === 'projetos';
   const homeBase = onHome ? '' : 'index.html';
   const logoHref = onHome ? '#top' : 'index.html#top';
-  return React.createElement("nav", {
+  const closeMenu = () => setMenuOpen(false);
+  return React.createElement(React.Fragment, null, React.createElement("nav", {
     style: {
       position: 'sticky',
       top: 0,
@@ -215,6 +226,7 @@ function Nav({
       fontWeight: 500
     }
   }, "AssessorTech")), React.createElement("div", {
+    className: "nav-links",
     style: {
       display: 'flex',
       gap: 'clamp(12px, 2.5vw, 32px)',
@@ -268,7 +280,174 @@ function Nav({
       background: tokens.accent,
       display: 'inline-block'
     }
-  }), "Projetos ", !onProjetos && '→')));
+  }), "Projetos ", !onProjetos && '→')), React.createElement("button", {
+    className: "nav-burger",
+    "aria-label": "Abrir menu",
+    "aria-expanded": menuOpen,
+    onClick: () => setMenuOpen(true),
+    style: {
+      display: 'none',
+      background: 'transparent',
+      border: 'none',
+      padding: 8,
+      margin: -8,
+      cursor: 'pointer',
+      color: tokens.ink,
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  }, React.createElement("svg", {
+    width: "24",
+    height: "24",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round"
+  }, React.createElement("line", { x1: "4", y1: "7", x2: "20", y2: "7" }),
+     React.createElement("line", { x1: "4", y1: "12", x2: "20", y2: "12" }),
+     React.createElement("line", { x1: "4", y1: "17", x2: "20", y2: "17" })))),
+    menuOpen && React.createElement("div", {
+      role: "dialog",
+      "aria-modal": "true",
+      style: {
+        position: 'fixed',
+        inset: 0,
+        zIndex: 100,
+        background: tokens.paper,
+        display: 'flex',
+        flexDirection: 'column',
+        fontFamily: tokens.sans,
+        animation: 'navMenuIn .22s cubic-bezier(.2,.7,.2,1)'
+      }
+    }, React.createElement("style", null, `
+            @keyframes navMenuIn {
+              from { opacity: 0; transform: translateY(-6px); }
+              to   { opacity: 1; transform: translateY(0); }
+            }
+          `),
+      React.createElement("div", {
+        style: {
+          padding: '14px clamp(18px, 5vw, 56px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          borderBottom: `1px solid ${tokens.rule}`
+        }
+      }, React.createElement("a", {
+        href: logoHref,
+        onClick: closeMenu,
+        style: {
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+          textDecoration: 'none',
+          color: tokens.ink
+        }
+      }, React.createElement(AssessorLogo, {
+        size: 26,
+        primary: tokens.primary,
+        accent: tokens.accent
+      }), React.createElement("span", {
+        style: {
+          fontSize: 16,
+          letterSpacing: '-0.01em',
+          fontWeight: 500
+        }
+      }, "AssessorTech")),
+      React.createElement("button", {
+        "aria-label": "Fechar menu",
+        onClick: closeMenu,
+        style: {
+          background: 'transparent',
+          border: 'none',
+          padding: 8,
+          margin: -8,
+          cursor: 'pointer',
+          color: tokens.ink,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }
+      }, React.createElement("svg", {
+        width: "24",
+        height: "24",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "1.8",
+        strokeLinecap: "round"
+      }, React.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" }),
+         React.createElement("line", { x1: "6", y1: "18", x2: "18", y2: "6" })))),
+      React.createElement("div", {
+        style: {
+          flex: 1,
+          overflowY: 'auto',
+          padding: 'clamp(28px, 6vw, 56px) clamp(20px, 5vw, 56px)',
+          display: 'flex',
+          flexDirection: 'column'
+        }
+      }, links.map((l, i) => React.createElement("a", {
+        key: l,
+        href: `${homeBase}#${l.toLowerCase()}`,
+        onClick: closeMenu,
+        style: {
+          fontSize: 'clamp(28px, 7.5vw, 40px)',
+          fontWeight: 500,
+          letterSpacing: '-0.02em',
+          color: tokens.ink,
+          textDecoration: 'none',
+          padding: '18px 0',
+          borderTop: i === 0 ? 'none' : `1px solid ${tokens.rule}`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }
+      }, React.createElement("span", null, l), React.createElement("span", {
+        style: {
+          color: tokens.inkMuted,
+          fontSize: 22,
+          fontFamily: tokens.serif,
+          fontStyle: 'italic'
+        }
+      }, "\u2197"))), React.createElement("a", {
+        href: "projetos.html",
+        onClick: closeMenu,
+        style: {
+          fontSize: 'clamp(28px, 7.5vw, 40px)',
+          fontWeight: 500,
+          letterSpacing: '-0.02em',
+          color: tokens.primary,
+          textDecoration: 'none',
+          padding: '18px 0',
+          borderTop: `1px solid ${tokens.rule}`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }
+      }, React.createElement("span", {
+        style: {
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 12
+        }
+      }, onProjetos && React.createElement("span", {
+        "aria-hidden": "true",
+        style: {
+          width: 8,
+          height: 8,
+          borderRadius: '50%',
+          background: tokens.accent,
+          display: 'inline-block'
+        }
+      }), "Projetos"), React.createElement("span", {
+        style: {
+          color: tokens.primary,
+          fontSize: 22,
+          fontFamily: tokens.serif,
+          fontStyle: 'italic'
+        }
+      }, "\u2197")))));
 }
 Object.assign(window, {
   Nav
@@ -821,15 +1000,6 @@ function Clientes() {
       color: tokens.inkSoft
     }
   }, "Garimpamos o dado onde ele estiver."))), React.createElement("div", null, React.createElement("div", {
-    style: {
-      fontSize: 12,
-      color: tokens.inkMuted,
-      fontFamily: tokens.mono,
-      letterSpacing: '0.08em',
-      textTransform: 'uppercase',
-      marginBottom: 28
-    }
-  }, "Clientes"), React.createElement("div", {
     className: "logos-mask",
     style: {
       position: 'relative',
