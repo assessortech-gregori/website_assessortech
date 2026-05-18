@@ -4,7 +4,7 @@ function Erro404Hero() {
   return (
     <section style={{
       minHeight: 'calc(100vh - 86px)',
-      padding: '80px 56px 120px',
+      padding: 'clamp(56px, 10vw, 80px) clamp(20px, 5vw, 56px) clamp(80px, 14vw, 120px)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
