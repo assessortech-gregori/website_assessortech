@@ -4,7 +4,7 @@
 function PrivacidadeHero() {
   return (
     <section style={{
-      padding: '120px 56px 60px',
+      padding: 'clamp(80px, 14vw, 120px) clamp(20px, 5vw, 56px) clamp(48px, 8vw, 60px)',
       fontFamily: tokens.sans,
       borderBottom: `1px solid ${tokens.rule}`
     }}>
@@ -77,7 +77,7 @@ function PrivacidadeBody() {
   const linkStyle = { color: tokens.primary, textDecoration: 'none', borderBottom: `1px solid ${tokens.primary}40` };
 
   return (
-    <section style={{ padding: '40px 56px 120px', fontFamily: tokens.sans }}>
+    <section style={{ padding: 'clamp(32px, 5vw, 40px) clamp(20px, 5vw, 56px) clamp(80px, 14vw, 120px)', fontFamily: tokens.sans }}>
       <div style={{ maxWidth: 880, margin: '0 auto' }}>
 
         <PrivSection n={1} title="Quem somos">

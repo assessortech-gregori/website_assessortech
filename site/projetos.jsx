@@ -32,19 +32,18 @@ function ProjetoCover({ projeto, height = 460 }) {
 function ProjetosHero() {
   return (
     <section id="top" style={{
-      padding: '48px 56px 40px',
+      padding: 'clamp(32px, 5vw, 48px) clamp(20px, 5vw, 56px) clamp(28px, 4vw, 40px)',
       position: 'relative',
       fontFamily: tokens.sans
     }}>
       <div style={{ maxWidth: 1240, margin: '0 auto' }}>
         <h1 style={{
           margin: 0,
-          fontSize: 'clamp(44px, 5.6vw, 88px)',
+          fontSize: 'clamp(36px, 5.6vw, 88px)',
           lineHeight: 1,
           letterSpacing: '-0.04em',
           fontWeight: 500,
-          color: tokens.ink,
-          whiteSpace: 'nowrap'
+          color: tokens.ink
         }}>
           Demos{' '}
           <span style={{ fontFamily: tokens.serif, fontStyle: 'italic', color: tokens.primary, fontWeight: 500 }}>
@@ -106,7 +105,7 @@ function ProjetoCard({ projeto, density, idx }) {
 // ─── Galeria simples (sem categorias) ────────────────────────────
 function ProjetosGallery({ density }) {
   return (
-    <section style={{ padding: '24px 56px 80px', fontFamily: tokens.sans }}>
+    <section style={{ padding: 'clamp(16px, 3vw, 24px) clamp(20px, 5vw, 56px) clamp(64px, 10vw, 80px)', fontFamily: tokens.sans }}>
       <div style={{ maxWidth: 1240, margin: '0 auto' }}>
         {PROJETOS.map((p, i) => (
           <ProjetoCard
@@ -141,10 +140,10 @@ function ProjetosStack({ density }) {
   }, []);
 
   return (
-    <section style={{ padding: '24px 56px 80px', fontFamily: tokens.sans }}>
+    <section style={{ padding: 'clamp(16px, 3vw, 24px) clamp(20px, 5vw, 56px) clamp(64px, 10vw, 80px)', fontFamily: tokens.sans }}>
       <div style={{
         maxWidth: 1280, margin: '0 auto',
-        display: 'grid', gridTemplateColumns: '220px 1fr', gap: 56,
+        display: 'grid', gridTemplateColumns: '220px 1fr', gap: 'clamp(32px, 5vw, 56px)',
         alignItems: 'start'
       }}>
         <aside style={{
@@ -223,15 +222,15 @@ function ProjetosStack({ density }) {
 // ─── CTA final ───────────────────────────────────────────────────
 function ProjetosCTA() {
   return (
-    <section style={{ padding: '80px 56px 120px', fontFamily: tokens.sans }}>
+    <section style={{ padding: 'clamp(56px, 8vw, 80px) clamp(20px, 5vw, 56px) clamp(80px, 14vw, 120px)', fontFamily: tokens.sans }}>
       <div style={{
         maxWidth: 1240, margin: '0 auto',
         background: tokens.ink, color: tokens.paper,
         borderRadius: 14,
-        padding: '72px 64px',
+        padding: 'clamp(48px, 7vw, 72px) clamp(28px, 5vw, 64px)',
         display: 'grid',
         gridTemplateColumns: '1.6fr 1fr',
-        gap: 56,
+        gap: 'clamp(32px, 5vw, 56px)',
         alignItems: 'center',
         position: 'relative',
         overflow: 'hidden'

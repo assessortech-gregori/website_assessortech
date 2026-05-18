@@ -3,7 +3,7 @@
 function Footer() {
   return (
     <footer style={{
-      padding: '48px 56px 40px',
+      padding: 'clamp(32px, 6vw, 48px) clamp(20px, 5vw, 56px) clamp(28px, 5vw, 40px)',
       borderTop: `1px solid ${tokens.rule}`,
       fontFamily: tokens.sans,
       display: 'flex', justifyContent: 'space-between', alignItems: 'center',

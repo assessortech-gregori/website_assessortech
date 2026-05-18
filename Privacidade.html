@@ -39,6 +39,31 @@
   html { scroll-behavior: smooth; }
 </style>
 
+<style id="mobile-overrides">
+  @media (max-width: 768px) {
+    /* NAV — mesma regra das outras páginas */
+    nav > div > a:not([href*="projetos.html"]):not([href*="privacidade.html"]) {
+      display: none !important;
+    }
+
+    /* FOOTER — pilha vertical centrada em mobile */
+    footer {
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      gap: 20px !important;
+    }
+    footer > div:first-child {
+      flex-direction: column !important;
+      gap: 14px !important;
+    }
+    footer > div:last-child {
+      flex-direction: column !important;
+      gap: 18px !important;
+    }
+  }
+</style>
+
 <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 </head>

@@ -45,6 +45,105 @@
   html { scroll-behavior: smooth; }
 </style>
 
+<style id="mobile-overrides">
+  /* ────────────────────────────────────────────────────────────
+     CAMADA 2 — Overrides estruturais para mobile (≤768px).
+     Só ativa abaixo de 768px. Desktop fica intocado por construção.
+     Trabalha em conjunto com a Camada 1 (clamps + auto-fit nos JSX).
+     ──────────────────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    /* NAV — esconde links de seção; mantém logo + botão Projetos */
+    nav > div > a:not([href*="projetos.html"]):not([href*="privacidade.html"]) {
+      display: none !important;
+    }
+
+    /* HERO — grid 1.4fr|1fr → empilhado.
+       Uso minmax(0, 1fr) em vez de 1fr puro: permite a coluna encolher
+       abaixo do min-content, evitando que filhos com width: max-content
+       (ex: logos-track) forcem largura gigante. */
+    #top > div > div.hero-fade {
+      grid-template-columns: minmax(0, 1fr) !important;
+      align-items: stretch !important;
+    }
+    #top > div > div.hero-fade > div[style*="display: flex"] {
+      flex-wrap: wrap !important;
+    }
+    #top > div > div.hero-fade > div[style*="display: flex"] > a {
+      flex: 1 1 auto !important;
+      text-align: center !important;
+    }
+
+    /* HERO MOCKUP — 3 KPIs em coluna empilhados */
+    #top [style*="grid-template-columns: 1fr 1fr 1fr"] {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+    /* Tira os divisores verticais entre KPIs (viram horizontais) */
+    #top [style*="border-right"][style*="padding-right: 24"] {
+      border-right: none !important;
+      padding-right: 0 !important;
+      padding-bottom: 20px !important;
+      border-bottom: 1px solid rgba(14,17,22,.08) !important;
+    }
+
+    /* CLIENTES — colapsa heading|carrossel.
+       Crucial usar minmax(0, 1fr) aqui: o logos-track tem width: max-content
+       (~7600px do loop infinito) e forçaria a coluna a esse tamanho. */
+    [style*="grid-template-columns: 280px 1fr"] {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    /* DIFERENCIAIS — header em coluna; cards 1 col */
+    #diferenciais > div > div:first-child {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+    }
+    #diferenciais [style*="grid-template-columns: 1fr 1fr"] {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+    [style*="min-height: 380"] {
+      min-height: auto !important;
+    }
+
+    /* METODOLOGIA — sidebar 220px some, conteúdo 1 col, body sob título */
+    #metodologia [style*="grid-template-columns: 220px"] {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+    #metodologia [style*="grid-template-columns: 1fr 1.6fr"] {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    /* SEGMENTOS — header em coluna; grid 4 cols → 2 cols em mobile */
+    #segmentos > div > div:first-child {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+    }
+    #segmentos [style*="grid-template-columns: repeat(4"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* CONTATO — info|form empilhado */
+    #contato [style*="grid-template-columns: 1.2fr"] {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    /* FOOTER — pilha vertical centrada em mobile, em vez de wrap quebrado */
+    footer {
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      gap: 20px !important;
+    }
+    footer > div:first-child {
+      flex-direction: column !important;
+      gap: 14px !important;
+    }
+    footer > div:last-child {
+      flex-direction: column !important;
+      gap: 18px !important;
+    }
+  }
+</style>
+
 <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 

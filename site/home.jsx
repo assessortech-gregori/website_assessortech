@@ -6,7 +6,7 @@
 function Hero() {
   return (
     <section id="top" style={{
-      padding: '64px 56px 120px',
+      padding: 'clamp(40px, 6vw, 64px) clamp(20px, 5vw, 56px) clamp(72px, 12vw, 120px)',
       position: 'relative',
       overflow: 'hidden',
       fontFamily: tokens.sans
@@ -43,7 +43,7 @@ function Hero() {
       <div style={{ maxWidth: 1240, margin: '0 auto', position: 'relative' }}>
         <h1 style={{
           margin: 0,
-          fontSize: 'clamp(56px, 8vw, 132px)',
+          fontSize: 'clamp(40px, 8vw, 132px)',
           lineHeight: 0.92,
           letterSpacing: '-0.04em',
           fontWeight: 500,
@@ -59,10 +59,10 @@ function Hero() {
         </h1>
 
         <div className="hero-fade" style={{
-          marginTop: 56,
+          marginTop: 'clamp(32px, 5vw, 56px)',
           display: 'grid',
           gridTemplateColumns: '1.4fr 1fr',
-          gap: 80,
+          gap: 'clamp(28px, 6vw, 80px)',
           alignItems: 'end'
         }}>
           <p style={{
@@ -101,7 +101,7 @@ function Hero() {
 
         {/* dashboard mockup flutuante */}
         <Reveal delay={400}>
-          <div style={{ marginTop: 96, position: 'relative' }}>
+          <div style={{ marginTop: 'clamp(56px, 8vw, 96px)', position: 'relative' }}>
             <HeroMockup />
           </div>
         </Reveal>
@@ -119,12 +119,12 @@ function HeroMockup() {
       borderRadius: 14,
       border: `1px solid ${tokens.rule}`,
       boxShadow: '0 1px 0 rgba(0,0,0,.02), 0 24px 56px -20px rgba(14,17,22,.18)',
-      padding: 28,
+      padding: 'clamp(20px, 3vw, 28px)',
       maxWidth: 1240,
       margin: '0 auto',
       display: 'grid',
       gridTemplateColumns: '1fr 1fr 1fr',
-      gap: 24,
+      gap: 'clamp(16px, 3vw, 24px)',
       fontFamily: tokens.sans
     }}>
       {/* KPI 1 */}
@@ -145,7 +145,7 @@ function HeroMockup() {
       </div>
       {/* Bar chart */}
       <div style={{ borderRight: `1px solid ${tokens.rule}`, paddingRight: 24 }}>
-        <div style={{ fontSize: 12, color: tokens.inkMuted, fontFamily: tokens.mono, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Margem por Linha</div>
+        <div style={{ fontSize: 12, color: tokens.inkMuted, fontFamily: tokens.mono, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Margem por Mês</div>
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6, height: 130, marginTop: 18 }}>
           {bars.map((h, i) =>
           <div key={i} style={{
@@ -221,7 +221,7 @@ function Clientes() {
 
   return (
     <section style={{
-      padding: '64px 56px',
+      padding: 'clamp(48px, 8vw, 64px) clamp(20px, 5vw, 56px)',
       borderTop: `1px solid ${tokens.rule}`,
       borderBottom: `1px solid ${tokens.rule}`,
       background: tokens.card,
@@ -271,14 +271,14 @@ function Clientes() {
       `}</style>
 
       <div style={{
-        display: 'grid', gridTemplateColumns: '280px 1fr', gap: 80, maxWidth: 1240, margin: '0 auto', alignItems: 'start'
+        display: 'grid', gridTemplateColumns: '280px 1fr', gap: 'clamp(32px, 6vw, 80px)', maxWidth: 1240, margin: '0 auto', alignItems: 'start'
       }}>
         <div>
           <div style={{ fontSize: 12, color: tokens.inkMuted, fontFamily: tokens.mono, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             Conexões
           </div>
           
-          <p style={{ fontSize: 22, lineHeight: 1.35, margin: '14px 0 0', color: tokens.ink, letterSpacing: '-0.01em' }}>
+          <p style={{ fontSize: 'clamp(17px, 4.2vw, 22px)', lineHeight: 1.35, margin: '14px 0 0', color: tokens.ink, letterSpacing: '-0.01em', overflowWrap: 'break-word' }}>
             Qualquer sistema. Qualquer fonte.{' '}
             <span style={{ color: tokens.inkSoft }}>Garimpamos o dado onde ele estiver.</span>
           </p>
@@ -312,7 +312,7 @@ function Clientes() {
 function Manifesto() {
   return (
     <section id="sobre" style={{
-      padding: '160px 56px 140px', fontFamily: tokens.sans
+      padding: 'clamp(96px, 14vw, 160px) clamp(20px, 5vw, 56px) clamp(80px, 12vw, 140px)', fontFamily: tokens.sans
     }}>
       <div style={{ maxWidth: 1240, margin: '0 auto' }}>
         <Reveal>
@@ -332,7 +332,7 @@ function Manifesto() {
           </h2>
         </Reveal>
         <Reveal delay={260}>
-          <div style={{ marginTop: 64, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 48, borderTop: `1px solid ${tokens.rule}`, paddingTop: 40 }}>
+          <div style={{ marginTop: 'clamp(40px, 6vw, 64px)', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'clamp(12px, 3vw, 48px)', borderTop: `1px solid ${tokens.rule}`, paddingTop: 'clamp(24px, 4vw, 40px)' }}>
             <Stat number={100} suffix="+" label="Clientes atendidos" />
             <Stat number={25} suffix="+" label="Sistemas integrados" />
             <Stat number={2019} label="Atuamos desde" />
@@ -346,10 +346,10 @@ function Manifesto() {
 function Stat({ number, label, suffix = '' }) {
   return (
     <div>
-      <div style={{ fontSize: 64, lineHeight: 1, letterSpacing: '-0.03em', fontWeight: 500, color: tokens.ink, fontFamily: tokens.sans }}>
+      <div style={{ fontSize: 'clamp(34px, 6.5vw, 64px)', lineHeight: 1, letterSpacing: '-0.03em', fontWeight: 500, color: tokens.ink, fontFamily: tokens.sans }}>
         {typeof number === 'number' ? <CountUp to={number} suffix={suffix} /> : number}
       </div>
-      <div style={{ marginTop: 10, fontSize: 14, color: tokens.inkSoft }}>{label}</div>
+      <div style={{ marginTop: 'clamp(6px, 1.2vw, 10px)', fontSize: 'clamp(11px, 2vw, 14px)', color: tokens.inkSoft }}>{label}</div>
     </div>);
 
 }
@@ -379,7 +379,7 @@ function Diferenciais() {
 
   return (
     <section id="diferenciais" style={{
-      padding: '120px 56px',
+      padding: 'clamp(80px, 12vw, 120px) clamp(20px, 5vw, 56px)',
       background: tokens.card,
       borderTop: `1px solid ${tokens.rule}`,
       borderBottom: `1px solid ${tokens.rule}`,
@@ -387,7 +387,7 @@ function Diferenciais() {
     }}>
       <div style={{ maxWidth: 1240, margin: '0 auto' }}>
         <Reveal>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 64, gap: 40 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 'clamp(40px, 6vw, 64px)', gap: 'clamp(24px, 4vw, 40px)', flexWrap: 'wrap' }}>
             <div>
               <div style={{ fontSize: 12, color: tokens.inkMuted, fontFamily: tokens.mono, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                 O que nos torna únicos
@@ -417,7 +417,7 @@ function DiffCard({ n, title, body, tag, delay }) {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         style={{
-          padding: '48px 40px 44px',
+          padding: 'clamp(32px, 5vw, 48px) clamp(24px, 4vw, 40px) clamp(28px, 5vw, 44px)',
           borderRight: `1px solid ${tokens.rule}`,
           borderBottom: `1px solid ${tokens.rule}`,
           background: hover ? tokens.paper : tokens.card,
@@ -458,7 +458,7 @@ function Metodologia() {
     { n: '05', title: 'Suporte contínuo', body: 'Acompanhamento, evolução e aderência da solução ao longo do tempo. A gente fica.', icon: 'support' },
   ];
   return (
-    <section id="metodologia" style={{ padding: '160px 56px 140px', fontFamily: tokens.sans }}>
+    <section id="metodologia" style={{ padding: 'clamp(96px, 14vw, 160px) clamp(20px, 5vw, 56px) clamp(80px, 12vw, 140px)', fontFamily: tokens.sans }}>
       <div style={{ maxWidth: 1240, margin: '0 auto' }}>
         <Reveal>
           <div style={{ fontSize: 12, color: tokens.inkMuted, fontFamily: tokens.mono, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Metodologia</div>
@@ -468,7 +468,7 @@ function Metodologia() {
         </Reveal>
 
         {/* Lista detalhada */}
-        <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: '220px 1fr', gap: 0 }}>
+        <div style={{ marginTop: 'clamp(48px, 8vw, 80px)', display: 'grid', gridTemplateColumns: '220px 1fr', gap: 0 }}>
           {steps.map((s, i) => <Step key={s.n} {...s} first={i === 0} last={i === steps.length - 1} delay={i * 60} />)}
         </div>
       </div>
@@ -615,7 +615,7 @@ function Step({ n, title, body, icon, first, last, delay }) {
           padding: '32px 0 44px',
           borderTop: `1px solid ${tokens.rule}`,
           borderBottom: last ? `1px solid ${tokens.rule}` : 'none',
-          display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 64, alignItems: 'baseline',
+          display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 'clamp(24px, 4vw, 64px)', alignItems: 'baseline',
         }}>
           <h3 style={{ margin: 0, fontSize: 36, lineHeight: 1.05, letterSpacing: '-0.02em', fontWeight: 500, color: tokens.ink }}>{title}</h3>
           <p style={{ margin: 0, fontSize: 17, lineHeight: 1.5, color: tokens.inkSoft, maxWidth: 560 }}>{body}</p>
@@ -668,7 +668,7 @@ function Beneficios() {
     },
   ];
   return (
-    <section style={{ padding: '120px 56px', background: tokens.ink, color: tokens.paper, fontFamily: tokens.sans }}>
+    <section style={{ padding: 'clamp(80px, 12vw, 120px) clamp(20px, 5vw, 56px)', background: tokens.ink, color: tokens.paper, fontFamily: tokens.sans }}>
       <div style={{ maxWidth: 1240, margin: '0 auto' }}>
         <Reveal>
           <div style={{ fontSize: 12, color: 'rgba(250,250,247,.5)', fontFamily: tokens.mono, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
@@ -679,11 +679,11 @@ function Beneficios() {
             <span style={{ color: 'rgba(250,250,247,.55)' }}>Inteligência estratégica</span>{' '}para decidir.
           </h2>
         </Reveal>
-        <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
+        <div style={{ marginTop: 'clamp(48px, 8vw, 80px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 'clamp(16px, 3vw, 32px)' }}>
           {items.map((it, i) => (
             <Reveal key={it.title} delay={i * 100}>
               <div style={{
-                padding: '40px 32px 36px',
+                padding: 'clamp(32px, 5vw, 40px) clamp(24px, 4vw, 32px) clamp(28px, 5vw, 36px)',
                 border: '1px solid rgba(250,250,247,.12)',
                 borderRadius: 8,
                 background: 'rgba(250,250,247,.03)',
@@ -721,7 +721,7 @@ function Segmentos() {
     { name: 'Varejo', icon: 'retail' },
   ];
   return (
-    <section id="segmentos" style={{ padding: '140px 56px 120px', fontFamily: tokens.sans }}>
+    <section id="segmentos" style={{ padding: 'clamp(96px, 14vw, 140px) clamp(20px, 5vw, 56px) clamp(80px, 12vw, 120px)', fontFamily: tokens.sans }}>
       <div style={{ maxWidth: 1240, margin: '0 auto' }}>
         <Reveal>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 24 }}>
@@ -737,10 +737,10 @@ function Segmentos() {
           </div>
         </Reveal>
         <div style={{
-          marginTop: 64,
+          marginTop: 'clamp(40px, 6vw, 64px)',
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 16,
+          gap: 'clamp(8px, 1.5vw, 16px)',
         }}>
           {segs.map((s, i) => <SegCard key={s.name} {...s} delay={i * 50} />)}
         </div>
@@ -753,24 +753,27 @@ function SegCard({ name, icon, delay }) {
   const [hover, setHover] = React.useState(false);
   return (
     <Reveal delay={delay}>
-      <div
+      <a
+        href="#contato"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         style={{
-          padding: '36px 28px 32px',
+          textDecoration: 'none',
+          color: 'inherit',
+          padding: 'clamp(20px, 4vw, 36px) clamp(14px, 3vw, 28px) clamp(20px, 4vw, 32px)',
           border: `1px solid ${tokens.rule}`,
           borderRadius: 12,
           background: hover ? tokens.card : tokens.paper,
           transition: 'all .25s',
-          cursor: 'default',
-          display: 'flex', flexDirection: 'column', gap: 28,
-          minHeight: 200,
+          cursor: 'pointer',
+          display: 'flex', flexDirection: 'column', gap: 'clamp(14px, 3vw, 28px)',
+          minHeight: 'clamp(140px, 30vw, 200px)',
           transform: hover ? 'translateY(-3px)' : 'translateY(0)',
           boxShadow: hover ? '0 10px 28px -12px rgba(14,17,22,.18)' : 'none',
           position: 'relative', overflow: 'hidden',
         }}>
         <div style={{
-          width: 56, height: 56, borderRadius: 10,
+          width: 'clamp(40px, 8vw, 56px)', height: 'clamp(40px, 8vw, 56px)', borderRadius: 10,
           background: hover ? tokens.primary : `${tokens.primary}10`,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           transition: 'background .25s',
@@ -779,7 +782,7 @@ function SegCard({ name, icon, delay }) {
         </div>
         <div>
           <div style={{
-            fontSize: 22, lineHeight: 1.15, letterSpacing: '-0.015em', fontWeight: 500,
+            fontSize: 'clamp(16px, 3.5vw, 22px)', lineHeight: 1.15, letterSpacing: '-0.015em', fontWeight: 500,
             color: tokens.ink,
           }}>{name}</div>
           <div style={{
@@ -788,7 +791,7 @@ function SegCard({ name, icon, delay }) {
             transition: 'all .25s',
           }}>conversar →</div>
         </div>
-      </div>
+      </a>
     </Reveal>
   );
 }
@@ -856,16 +859,16 @@ function SegIcon({ name, color, size = 28 }) {
 
 function Contato() {
   return (
-    <section id="contato" style={{ padding: '140px 56px 100px', fontFamily: tokens.sans }}>
+    <section id="contato" style={{ padding: 'clamp(96px, 14vw, 140px) clamp(20px, 5vw, 56px) clamp(72px, 10vw, 100px)', fontFamily: tokens.sans }}>
       <div style={{ maxWidth: 1240, margin: '0 auto' }}>
         <Reveal>
           <div style={{ fontSize: 12, color: tokens.inkMuted, fontFamily: tokens.mono, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Contato</div>
-          <h2 style={{ margin: '20px 0 0', fontSize: 'clamp(56px, 8vw, 120px)', lineHeight: 0.95, letterSpacing: '-0.04em', fontWeight: 500, color: tokens.ink, maxWidth: 1200 }}>
+          <h2 style={{ margin: '20px 0 0', fontSize: 'clamp(40px, 9vw, 120px)', lineHeight: 0.95, letterSpacing: '-0.04em', fontWeight: 500, color: tokens.ink, maxWidth: 1200 }}>
             Conta o problema.<br />
             <span style={{ fontFamily: tokens.serif, fontStyle: 'italic', fontWeight: 500, color: tokens.primary }}>A gente responde</span>{' '}rápido.
           </h2>
         </Reveal>
-        <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 80, alignItems: 'stretch' }}>
+        <div style={{ marginTop: 'clamp(48px, 8vw, 80px)', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 'clamp(32px, 6vw, 80px)', alignItems: 'stretch' }}>
           <Reveal delay={120} style={{ display: 'flex' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
               <ContactCard label="E-mail" value="contato@assessortech.com.br" href="mailto:contato@assessortech.com.br" icon="mail" />

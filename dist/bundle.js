@@ -184,7 +184,7 @@ function Nav({
       position: 'sticky',
       top: 0,
       zIndex: 50,
-      padding: '18px 56px',
+      padding: '14px clamp(18px, 5vw, 56px)',
       background: scrolled ? 'rgba(250,250,247,.85)' : 'transparent',
       backdropFilter: scrolled ? 'saturate(160%) blur(14px)' : 'none',
       WebkitBackdropFilter: scrolled ? 'saturate(160%) blur(14px)' : 'none',
@@ -217,7 +217,7 @@ function Nav({
   }, "AssessorTech")), React.createElement("div", {
     style: {
       display: 'flex',
-      gap: 32,
+      gap: 'clamp(12px, 2.5vw, 32px)',
       alignItems: 'center'
     }
   }, links.map(l => React.createElement("a", {
@@ -278,7 +278,7 @@ Object.assign(window, {
 function Footer() {
   return React.createElement("footer", {
     style: {
-      padding: '48px 56px 40px',
+      padding: 'clamp(32px, 6vw, 48px) clamp(20px, 5vw, 56px) clamp(28px, 5vw, 40px)',
       borderTop: `1px solid ${tokens.rule}`,
       fontFamily: tokens.sans,
       display: 'flex',
@@ -410,7 +410,7 @@ function Hero() {
   return React.createElement("section", {
     id: "top",
     style: {
-      padding: '64px 56px 120px',
+      padding: 'clamp(40px, 6vw, 64px) clamp(20px, 5vw, 56px) clamp(72px, 12vw, 120px)',
       position: 'relative',
       overflow: 'hidden',
       fontFamily: tokens.sans
@@ -452,7 +452,7 @@ function Hero() {
   }, React.createElement("h1", {
     style: {
       margin: 0,
-      fontSize: 'clamp(56px, 8vw, 132px)',
+      fontSize: 'clamp(40px, 8vw, 132px)',
       lineHeight: 0.92,
       letterSpacing: '-0.04em',
       fontWeight: 500,
@@ -474,10 +474,10 @@ function Hero() {
   }, React.createElement("span", null, "de neg\xF3cio."))), React.createElement("div", {
     className: "hero-fade",
     style: {
-      marginTop: 56,
+      marginTop: 'clamp(32px, 5vw, 56px)',
       display: 'grid',
       gridTemplateColumns: '1.4fr 1fr',
-      gap: 80,
+      gap: 'clamp(28px, 6vw, 80px)',
       alignItems: 'end'
     }
   }, React.createElement("p", {
@@ -540,7 +540,7 @@ function Hero() {
     delay: 400
   }, React.createElement("div", {
     style: {
-      marginTop: 96,
+      marginTop: 'clamp(56px, 8vw, 96px)',
       position: 'relative'
     }
   }, React.createElement(HeroMockup, null)))));
@@ -553,12 +553,12 @@ function HeroMockup() {
       borderRadius: 14,
       border: `1px solid ${tokens.rule}`,
       boxShadow: '0 1px 0 rgba(0,0,0,.02), 0 24px 56px -20px rgba(14,17,22,.18)',
-      padding: 28,
+      padding: 'clamp(20px, 3vw, 28px)',
       maxWidth: 1240,
       margin: '0 auto',
       display: 'grid',
       gridTemplateColumns: '1fr 1fr 1fr',
-      gap: 24,
+      gap: 'clamp(16px, 3vw, 24px)',
       fontFamily: tokens.sans
     }
   }, React.createElement("div", {
@@ -621,7 +621,7 @@ function HeroMockup() {
       letterSpacing: '0.06em',
       textTransform: 'uppercase'
     }
-  }, "Margem por Linha"), React.createElement("div", {
+  }, "Margem por M\xEAs"), React.createElement("div", {
     style: {
       display: 'flex',
       alignItems: 'flex-end',
@@ -743,7 +743,7 @@ function Clientes() {
   const logosLoop = [...logos, ...logos];
   return React.createElement("section", {
     style: {
-      padding: '64px 56px',
+      padding: 'clamp(48px, 8vw, 64px) clamp(20px, 5vw, 56px)',
       borderTop: `1px solid ${tokens.rule}`,
       borderBottom: `1px solid ${tokens.rule}`,
       background: tokens.card,
@@ -794,7 +794,7 @@ function Clientes() {
     style: {
       display: 'grid',
       gridTemplateColumns: '280px 1fr',
-      gap: 80,
+      gap: 'clamp(32px, 6vw, 80px)',
       maxWidth: 1240,
       margin: '0 auto',
       alignItems: 'start'
@@ -809,11 +809,12 @@ function Clientes() {
     }
   }, "Conex\xF5es"), React.createElement("p", {
     style: {
-      fontSize: 22,
+      fontSize: 'clamp(17px, 4.2vw, 22px)',
       lineHeight: 1.35,
       margin: '14px 0 0',
       color: tokens.ink,
-      letterSpacing: '-0.01em'
+      letterSpacing: '-0.01em',
+      overflowWrap: 'break-word'
     }
   }, "Qualquer sistema. Qualquer fonte.", ' ', React.createElement("span", {
     style: {
@@ -851,7 +852,7 @@ function Manifesto() {
   return React.createElement("section", {
     id: "sobre",
     style: {
-      padding: '160px 56px 140px',
+      padding: 'clamp(96px, 14vw, 160px) clamp(20px, 5vw, 56px) clamp(80px, 12vw, 140px)',
       fontFamily: tokens.sans
     }
   }, React.createElement("div", {
@@ -897,12 +898,12 @@ function Manifesto() {
     delay: 260
   }, React.createElement("div", {
     style: {
-      marginTop: 64,
+      marginTop: 'clamp(40px, 6vw, 64px)',
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr',
-      gap: 48,
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: 'clamp(12px, 3vw, 48px)',
       borderTop: `1px solid ${tokens.rule}`,
-      paddingTop: 40
+      paddingTop: 'clamp(24px, 4vw, 40px)'
     }
   }, React.createElement(Stat, {
     number: 100,
@@ -924,7 +925,7 @@ function Stat({
 }) {
   return React.createElement("div", null, React.createElement("div", {
     style: {
-      fontSize: 64,
+      fontSize: 'clamp(34px, 6.5vw, 64px)',
       lineHeight: 1,
       letterSpacing: '-0.03em',
       fontWeight: 500,
@@ -936,8 +937,8 @@ function Stat({
     suffix: suffix
   }) : number), React.createElement("div", {
     style: {
-      marginTop: 10,
-      fontSize: 14,
+      marginTop: 'clamp(6px, 1.2vw, 10px)',
+      fontSize: 'clamp(11px, 2vw, 14px)',
       color: tokens.inkSoft
     }
   }, label));
@@ -967,7 +968,7 @@ function Diferenciais() {
   return React.createElement("section", {
     id: "diferenciais",
     style: {
-      padding: '120px 56px',
+      padding: 'clamp(80px, 12vw, 120px) clamp(20px, 5vw, 56px)',
       background: tokens.card,
       borderTop: `1px solid ${tokens.rule}`,
       borderBottom: `1px solid ${tokens.rule}`,
@@ -983,8 +984,9 @@ function Diferenciais() {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'flex-end',
-      marginBottom: 64,
-      gap: 40
+      marginBottom: 'clamp(40px, 6vw, 64px)',
+      gap: 'clamp(24px, 4vw, 40px)',
+      flexWrap: 'wrap'
     }
   }, React.createElement("div", null, React.createElement("div", {
     style: {
@@ -1049,7 +1051,7 @@ function DiffCard({
     onMouseEnter: () => setHover(true),
     onMouseLeave: () => setHover(false),
     style: {
-      padding: '48px 40px 44px',
+      padding: 'clamp(32px, 5vw, 48px) clamp(24px, 4vw, 40px) clamp(28px, 5vw, 44px)',
       borderRight: `1px solid ${tokens.rule}`,
       borderBottom: `1px solid ${tokens.rule}`,
       background: hover ? tokens.paper : tokens.card,
@@ -1126,7 +1128,7 @@ function Metodologia() {
   return React.createElement("section", {
     id: "metodologia",
     style: {
-      padding: '160px 56px 140px',
+      padding: 'clamp(96px, 14vw, 160px) clamp(20px, 5vw, 56px) clamp(80px, 12vw, 140px)',
       fontFamily: tokens.sans
     }
   }, React.createElement("div", {
@@ -1161,7 +1163,7 @@ function Metodologia() {
     }
   }, "cuidado"), ' ', "em cada projeto.")), React.createElement("div", {
     style: {
-      marginTop: 80,
+      marginTop: 'clamp(48px, 8vw, 80px)',
       display: 'grid',
       gridTemplateColumns: '220px 1fr',
       gap: 0
@@ -1458,7 +1460,7 @@ function Step({
       borderBottom: last ? `1px solid ${tokens.rule}` : 'none',
       display: 'grid',
       gridTemplateColumns: '1fr 1.6fr',
-      gap: 64,
+      gap: 'clamp(24px, 4vw, 64px)',
       alignItems: 'baseline'
     }
   }, React.createElement("h3", {
@@ -1536,7 +1538,7 @@ function Beneficios() {
   }];
   return React.createElement("section", {
     style: {
-      padding: '120px 56px',
+      padding: 'clamp(80px, 12vw, 120px) clamp(20px, 5vw, 56px)',
       background: tokens.ink,
       color: tokens.paper,
       fontFamily: tokens.sans
@@ -1569,17 +1571,17 @@ function Beneficios() {
     }
   }, "Intelig\xEAncia estrat\xE9gica"), ' ', "para decidir.")), React.createElement("div", {
     style: {
-      marginTop: 80,
+      marginTop: 'clamp(48px, 8vw, 80px)',
       display: 'grid',
-      gridTemplateColumns: 'repeat(3, 1fr)',
-      gap: 32
+      gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+      gap: 'clamp(16px, 3vw, 32px)'
     }
   }, items.map((it, i) => React.createElement(Reveal, {
     key: it.title,
     delay: i * 100
   }, React.createElement("div", {
     style: {
-      padding: '40px 32px 36px',
+      padding: 'clamp(32px, 5vw, 40px) clamp(24px, 4vw, 32px) clamp(28px, 5vw, 36px)',
       border: '1px solid rgba(250,250,247,.12)',
       borderRadius: 8,
       background: 'rgba(250,250,247,.03)',
@@ -1644,7 +1646,7 @@ function Segmentos() {
   return React.createElement("section", {
     id: "segmentos",
     style: {
-      padding: '140px 56px 120px',
+      padding: 'clamp(96px, 14vw, 140px) clamp(20px, 5vw, 56px) clamp(80px, 12vw, 120px)',
       fontFamily: tokens.sans
     }
   }, React.createElement("div", {
@@ -1695,10 +1697,10 @@ function Segmentos() {
     }
   }, "Ind\xFAstrias e opera\xE7\xF5es onde j\xE1 estruturamos BI."))), React.createElement("div", {
     style: {
-      marginTop: 64,
+      marginTop: 'clamp(40px, 6vw, 64px)',
       display: 'grid',
       gridTemplateColumns: 'repeat(4, 1fr)',
-      gap: 16
+      gap: 'clamp(8px, 1.5vw, 16px)'
     }
   }, segs.map((s, i) => React.createElement(SegCard, _extends({
     key: s.name
@@ -1714,20 +1716,23 @@ function SegCard({
   const [hover, setHover] = React.useState(false);
   return React.createElement(Reveal, {
     delay: delay
-  }, React.createElement("div", {
+  }, React.createElement("a", {
+    href: "#contato",
     onMouseEnter: () => setHover(true),
     onMouseLeave: () => setHover(false),
     style: {
-      padding: '36px 28px 32px',
+      textDecoration: 'none',
+      color: 'inherit',
+      padding: 'clamp(20px, 4vw, 36px) clamp(14px, 3vw, 28px) clamp(20px, 4vw, 32px)',
       border: `1px solid ${tokens.rule}`,
       borderRadius: 12,
       background: hover ? tokens.card : tokens.paper,
       transition: 'all .25s',
-      cursor: 'default',
+      cursor: 'pointer',
       display: 'flex',
       flexDirection: 'column',
-      gap: 28,
-      minHeight: 200,
+      gap: 'clamp(14px, 3vw, 28px)',
+      minHeight: 'clamp(140px, 30vw, 200px)',
       transform: hover ? 'translateY(-3px)' : 'translateY(0)',
       boxShadow: hover ? '0 10px 28px -12px rgba(14,17,22,.18)' : 'none',
       position: 'relative',
@@ -1735,8 +1740,8 @@ function SegCard({
     }
   }, React.createElement("div", {
     style: {
-      width: 56,
-      height: 56,
+      width: 'clamp(40px, 8vw, 56px)',
+      height: 'clamp(40px, 8vw, 56px)',
       borderRadius: 10,
       background: hover ? tokens.primary : `${tokens.primary}10`,
       display: 'flex',
@@ -1750,7 +1755,7 @@ function SegCard({
     size: 28
   })), React.createElement("div", null, React.createElement("div", {
     style: {
-      fontSize: 22,
+      fontSize: 'clamp(16px, 3.5vw, 22px)',
       lineHeight: 1.15,
       letterSpacing: '-0.015em',
       fontWeight: 500,
@@ -1883,7 +1888,7 @@ function Contato() {
   return React.createElement("section", {
     id: "contato",
     style: {
-      padding: '140px 56px 100px',
+      padding: 'clamp(96px, 14vw, 140px) clamp(20px, 5vw, 56px) clamp(72px, 10vw, 100px)',
       fontFamily: tokens.sans
     }
   }, React.createElement("div", {
@@ -1902,7 +1907,7 @@ function Contato() {
   }, "Contato"), React.createElement("h2", {
     style: {
       margin: '20px 0 0',
-      fontSize: 'clamp(56px, 8vw, 120px)',
+      fontSize: 'clamp(40px, 9vw, 120px)',
       lineHeight: 0.95,
       letterSpacing: '-0.04em',
       fontWeight: 500,
@@ -1918,10 +1923,10 @@ function Contato() {
     }
   }, "A gente responde"), ' ', "r\xE1pido.")), React.createElement("div", {
     style: {
-      marginTop: 80,
+      marginTop: 'clamp(48px, 8vw, 80px)',
       display: 'grid',
       gridTemplateColumns: '1.2fr 1fr',
-      gap: 80,
+      gap: 'clamp(32px, 6vw, 80px)',
       alignItems: 'stretch'
     }
   }, React.createElement(Reveal, {
@@ -2714,7 +2719,7 @@ function ProjetosHero() {
   return React.createElement("section", {
     id: "top",
     style: {
-      padding: '48px 56px 40px',
+      padding: 'clamp(32px, 5vw, 48px) clamp(20px, 5vw, 56px) clamp(28px, 4vw, 40px)',
       position: 'relative',
       fontFamily: tokens.sans
     }
@@ -2726,12 +2731,11 @@ function ProjetosHero() {
   }, React.createElement("h1", {
     style: {
       margin: 0,
-      fontSize: 'clamp(44px, 5.6vw, 88px)',
+      fontSize: 'clamp(36px, 5.6vw, 88px)',
       lineHeight: 1,
       letterSpacing: '-0.04em',
       fontWeight: 500,
-      color: tokens.ink,
-      whiteSpace: 'nowrap'
+      color: tokens.ink
     }
   }, "Demos", ' ', React.createElement("span", {
     style: {
@@ -2795,7 +2799,7 @@ function ProjetosGallery({
 }) {
   return React.createElement("section", {
     style: {
-      padding: '24px 56px 80px',
+      padding: 'clamp(16px, 3vw, 24px) clamp(20px, 5vw, 56px) clamp(64px, 10vw, 80px)',
       fontFamily: tokens.sans
     }
   }, React.createElement("div", {
@@ -2834,7 +2838,7 @@ function ProjetosStack({
   }, []);
   return React.createElement("section", {
     style: {
-      padding: '24px 56px 80px',
+      padding: 'clamp(16px, 3vw, 24px) clamp(20px, 5vw, 56px) clamp(64px, 10vw, 80px)',
       fontFamily: tokens.sans
     }
   }, React.createElement("div", {
@@ -2843,7 +2847,7 @@ function ProjetosStack({
       margin: '0 auto',
       display: 'grid',
       gridTemplateColumns: '220px 1fr',
-      gap: 56,
+      gap: 'clamp(32px, 5vw, 56px)',
       alignItems: 'start'
     }
   }, React.createElement("aside", {
@@ -2948,7 +2952,7 @@ function ProjetosStack({
 function ProjetosCTA() {
   return React.createElement("section", {
     style: {
-      padding: '80px 56px 120px',
+      padding: 'clamp(56px, 8vw, 80px) clamp(20px, 5vw, 56px) clamp(80px, 14vw, 120px)',
       fontFamily: tokens.sans
     }
   }, React.createElement("div", {
@@ -2958,10 +2962,10 @@ function ProjetosCTA() {
       background: tokens.ink,
       color: tokens.paper,
       borderRadius: 14,
-      padding: '72px 64px',
+      padding: 'clamp(48px, 7vw, 72px) clamp(28px, 5vw, 64px)',
       display: 'grid',
       gridTemplateColumns: '1.6fr 1fr',
-      gap: 56,
+      gap: 'clamp(32px, 5vw, 56px)',
       alignItems: 'center',
       position: 'relative',
       overflow: 'hidden'
@@ -3057,7 +3061,7 @@ window.ProjetosPage = ProjetosPage;
 function PrivacidadeHero() {
   return React.createElement("section", {
     style: {
-      padding: '120px 56px 60px',
+      padding: 'clamp(80px, 14vw, 120px) clamp(20px, 5vw, 56px) clamp(48px, 8vw, 60px)',
       fontFamily: tokens.sans,
       borderBottom: `1px solid ${tokens.rule}`
     }
@@ -3150,7 +3154,7 @@ function PrivacidadeBody() {
   };
   return React.createElement("section", {
     style: {
-      padding: '40px 56px 120px',
+      padding: 'clamp(32px, 5vw, 40px) clamp(20px, 5vw, 56px) clamp(80px, 14vw, 120px)',
       fontFamily: tokens.sans
     }
   }, React.createElement("div", {

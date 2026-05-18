@@ -18,7 +18,7 @@ function Nav({ page = 'home' }) {
   return (
     <nav style={{
       position: 'sticky', top: 0, zIndex: 50,
-      padding: '18px 56px',
+      padding: '14px clamp(18px, 5vw, 56px)',
       background: scrolled ? 'rgba(250,250,247,.85)' : 'transparent',
       backdropFilter: scrolled ? 'saturate(160%) blur(14px)' : 'none',
       WebkitBackdropFilter: scrolled ? 'saturate(160%) blur(14px)' : 'none',
@@ -31,7 +31,7 @@ function Nav({ page = 'home' }) {
         <AssessorLogo size={26} primary={tokens.primary} accent={tokens.accent} />
         <span style={{ fontSize: 16, letterSpacing: '-0.01em', fontWeight: 500 }}>AssessorTech</span>
       </a>
-      <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: 'clamp(12px, 2.5vw, 32px)', alignItems: 'center' }}>
         {links.map((l) =>
         <a key={l} href={`${homeBase}#${l.toLowerCase()}`} style={{
           fontSize: 14, color: tokens.inkSoft, textDecoration: 'none',
